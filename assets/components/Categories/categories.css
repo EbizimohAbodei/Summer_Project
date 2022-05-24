@@ -1,0 +1,24 @@
+.categories {
+  color: black;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  justify-content: center;
+  width: 70vw;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.category {
+  background-color: rgb(122, 163, 204);
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
