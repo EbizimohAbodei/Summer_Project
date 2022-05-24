@@ -10,7 +10,4 @@ const Footer = () => {
   );
 };
 
-const root = ReactDom.createRoot(document.querySelector("#app"));
-root.render(<Footer />);
-
 export default Footer;

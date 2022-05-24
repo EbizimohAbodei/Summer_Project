@@ -26,7 +26,4 @@ const Header = () => {
   );
 };
 
-const root = ReactDom.createRoot(document.querySelector("#app"));
-root.render(<Header />);
-
 export default Header;
