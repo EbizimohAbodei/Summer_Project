@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./SingleEventPage.module.css";
+import "./SingleEventPage.css";
 import axios from "axios";
 
 const SingleEventPage = () => {
