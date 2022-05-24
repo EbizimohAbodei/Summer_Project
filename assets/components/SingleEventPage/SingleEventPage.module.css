@@ -1,0 +1,8 @@
+.eventPage {
+  border: 1px solid red;
+  align-items: center;
+}
+
+.eventInfo {
+  display: flex;
+}
