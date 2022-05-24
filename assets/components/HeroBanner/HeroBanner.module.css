@@ -1,0 +1,7 @@
+.heroBanner {
+  min-width: 100vw;
+  max-height: 50vh;
+  background-image: url("http://source-unsplash.com/U7HLzMO4SIY");
+  background-size: contain;
+  text-align: center;
+}
