@@ -9,18 +9,18 @@ const SingleEventPage = () => {
   const [event, setEvent] = useState([]);
 
   return (
-    <div className={classes.eventPage}>
+    <div>
       <h3>
         {event.name}, {event.date}
       </h3>
-      <div className={classes.eventInfo}>
-        <div className={classes.leftColumn}>
+      <div>
+        <div>
           <p>{event.name}</p>
           <p>{event.date}</p>
           <p>{event.location}</p>
           <p>{event.website}</p>
         </div>
-        <div className={classes.rightColumn}>
+        <div>
           <p>{event.description}</p>
         </div>
       </div>

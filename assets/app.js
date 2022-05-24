@@ -12,4 +12,4 @@ import "./styles/app.css";
 import "./bootstrap";
 
 // Imports the index file
-import "./components/Header/Header";
+import "./Index";

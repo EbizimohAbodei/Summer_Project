@@ -1,6 +1,6 @@
 const HeroBanner = () => {
   return (
-    <div className={classes.heroBanner}>
+    <div>
       <h1>This will be the Herobanner</h1>
       <h3>This might be the place for the searchbar component??</h3>
     </div>

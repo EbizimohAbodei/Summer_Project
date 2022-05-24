@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import "./searchBar.css";
+import { RiSearch2Line } from "react-icons/Ri";
+import { GrClose } from "react-icons/Gr";
 
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [searchToggle, setSearchToggle] = useState(false);
 
   const handleSearch = () => {
     return;
   };
 
+  const showSearch = () => {
+    setSearchToggle(!searchToggle);
+  };
+
+  const hideSearch = () => {
+    setSearchToggle(!searchToggle);
+  };
+
   return (
     <>
-      {showSearchBar && (
+      {searchToggle && (
         <div className="searchBar">
           <input
             type="text"
@@ -20,12 +30,16 @@ export const SearchBar = () => {
           <button onClick={handleSearch}>Search</button>
         </div>
       )}
-      <span
-        className="searchIcon"
-        onClick={() => setShowSearchBar(!showSearchBar)}
-      >
-        search icon
-      </span>
+
+      {searchToggle ? (
+        <button onClick={hideSearch}>
+          <GrClose />
+        </button>
+      ) : (
+        <button onClick={showSearch}>
+          <RiSearch2Line />
+        </button>
+      )}
     </>
   );
 };

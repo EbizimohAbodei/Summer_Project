@@ -1,8 +1,8 @@
 import ReactDom from "react-dom/client";
 // import header from "./header.module.css";
 import React, { useState } from "react";
-import { RiSearch2Line } from "react-icons/Ri";
-import { GrClose } from "react-icons/Gr";
+import { SearchBar } from "../SearchBar/SearchBar";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [searchToggle, setSearchToggle] = useState(false);
@@ -17,22 +17,11 @@ const Header = () => {
 
   return (
     <header>
-      <h1>LOGO</h1>
-      {searchToggle && (
-        <div className="searchBar">
-          <input type="text"></input>
-          Tags
-        </div>
-      )}
-      {searchToggle ? (
-        <button onClick={hideSearch}>
-          <GrClose />
-        </button>
-      ) : (
-        <button onClick={showSearch}>
-          <RiSearch2Line />
-        </button>
-      )}
+      <Link to="/">
+        <h1>LOGO</h1>
+      </Link>
+      <NavLink to="/">Events</NavLink>
+      <SearchBar />
     </header>
   );
 };
