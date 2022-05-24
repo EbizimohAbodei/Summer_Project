@@ -1,10 +1,12 @@
 import React from "react";
 import Card from "../Card/Card";
-// import classes from "./cardslist.module.css";
+import "./Cardslist.css";
 
 function CardsList() {
   return (
-    <div>
+    <div className="CardList">
+      <Card />
+      <Card />
       <Card />
     </div>
   );

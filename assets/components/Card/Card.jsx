@@ -1,15 +1,17 @@
 import React from "react";
-// import classes from "./card.module.css";
+import "./card.css";
 
 function Card() {
   return (
-    <div>
+    <div className="card">
       <img src="https://via.placeholder.com/150" />
-      <div>
-        <p>24.5.2022 19:30</p>
-        <p>Event Name</p>
-        <p>Finnish National Opera and Ballet, Helsinginkatu 58</p>
-        <div>
+      <div className="card_info">
+        <p className="date">24.5.2022 19:30</p>
+        <p className="name">Event Name</p>
+        <p className="location">
+          Finnish National Opera and Ballet, Helsinginkatu 58
+        </p>
+        <div className="categories">
           <p>#opera</p>
           <p>#music</p>
           <p>#concerts</p>
