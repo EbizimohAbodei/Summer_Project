@@ -1,0 +1,4 @@
+.CardsList {
+  display: flex;
+  flex-direction: column;
+}
