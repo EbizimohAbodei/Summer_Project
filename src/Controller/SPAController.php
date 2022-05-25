@@ -14,7 +14,7 @@ class SPAController extends AbstractController
     #[Route('/{reactRoute}', name: 'spa_home', requirements:["reactRoute"=>"^(?!spa).+"], defaults:["reactRoute"=>null])]
     public function index(): Response
     {
-        $response = $client->request('GET', 'https://...');
+        // $response = $client->request('GET', 'https://...');
         return $this->render("/spa/index.html.twig", );
     }
 }
