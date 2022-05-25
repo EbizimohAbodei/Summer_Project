@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./searchBar.css";
+import "./searchBar.scss";
 import { RiSearch2Line } from "react-icons/Ri";
 import { GrClose } from "react-icons/Gr";
 
