@@ -4,7 +4,7 @@ import "./card.css";
 function Card(props) {
   return (
     <div className="card">
-      <img src={props.image} />
+      <img src={props.image} className="cardImage" />
       <div className="card_info">
         <p className="date">24.5.2022 19:30</p>
         <p className="name">{props.name}</p>
@@ -16,6 +16,7 @@ function Card(props) {
           <p>#music</p>
           <p>#concerts</p>
         </div>
+        <button>See more</button>
       </div>
     </div>
   );

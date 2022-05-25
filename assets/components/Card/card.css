@@ -26,3 +26,8 @@
   display: flex;
   color: blue;
 }
+
+.cardImage {
+  width: 200px;
+  height: 200px;
+}
