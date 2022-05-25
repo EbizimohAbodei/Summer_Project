@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./SingleEventPage.scss";
 import axios from "axios";
+import React from "react";
 
 const SingleEventPage = () => {
   const params = useParams;
@@ -11,7 +12,8 @@ const SingleEventPage = () => {
   return (
     <div className="eventPage">
       <h3>
-        {event.name}, {event.date}
+        {event.name}
+        {event.date}
       </h3>
       <div className="eventInfo">
         <div className="leftColumn">
