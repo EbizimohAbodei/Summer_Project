@@ -16,9 +16,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.category:hover {
-  cursor: pointer;
-  text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "../Card/Card";
-import "./Cardslist.css";
+import "./Cardslist.scss";
 const axios = require("axios").default;
 
 function CardsList() {

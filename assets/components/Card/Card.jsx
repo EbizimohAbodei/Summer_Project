@@ -5,7 +5,7 @@ function Card(props) {
   return (
     <div className="card">
       <img src={props.image} />
-      <div className="card_info">
+      <div>
         <p className="date">24.5.2022 19:30</p>
         <p className="name">{props.name}</p>
         <p className="location">
