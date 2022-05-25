@@ -1,5 +1,4 @@
 import ReactDom from "react-dom/client";
-// import header from "./header.module.css";
 import React, { useState } from "react";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { Link, NavLink } from "react-router-dom";
