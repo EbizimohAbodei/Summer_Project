@@ -4,18 +4,21 @@ import "./Cardslist.css";
 const axios = require("axios").default;
 
 function CardsList() {
-  const [allEeventData, setAllEeventData] = useState([]);
+  const [allEventsData, setAllEventsData] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://open-api.myhelsinki.fi/v1/events/?limit=5")
-      .then((response) => console.log(response));
+      .get("https://open-api.myhelsinki.fi/v1/events/")
+      .then((response) => setAllEventsData(response.data.data));
   }, []);
 
   return (
     <div className="CardList">
-      {console.log(allEeventData)}
-      <Card />
+      {console.log(allEventsData[0])}
+      <Card
+        name={allEventsData[0]?.name.fi}
+        image={allEventsData[0]?.description?.images[0]?.url}
+      />
     </div>
   );
 }

@@ -1,13 +1,13 @@
 import React from "react";
-import "./card.css";
+import "./card.scss";
 
-function Card() {
+function Card(props) {
   return (
     <div className="card">
-      <img src="https://via.placeholder.com/150" />
+      <img src={props.image} />
       <div className="card_info">
         <p className="date">24.5.2022 19:30</p>
-        <p className="name">Event Name</p>
+        <p className="name">{props.name}</p>
         <p className="location">
           Finnish National Opera and Ballet, Helsinginkatu 58
         </p>
