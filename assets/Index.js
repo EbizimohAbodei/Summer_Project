@@ -3,6 +3,12 @@ import ReactDom from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Pages/Layout";
 import CardsList from "./components/CardsList/CardsList.jsx";
+import SingleEventPage from "./components/SingleEventPage/SingleEventPage";
+
+// const RouterWrapper = (props) => {
+//   const params = useParams();
+//   return <SingleEventPage params={params} {...props} />;
+// };
 
 const Index = () => {
   return (
@@ -10,6 +16,7 @@ const Index = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<CardsList />} />
+          <Route path="cards/:id" element={<SingleEventPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
