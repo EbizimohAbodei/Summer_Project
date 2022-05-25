@@ -1,6 +1,9 @@
 .card {
   display: flex;
   align-items: center;
+  img {
+    width: 200px;
+  }
 }
 
 .card_info {
