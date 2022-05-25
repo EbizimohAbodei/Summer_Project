@@ -6,7 +6,6 @@ import HeroBanner from "../HeroBanner/HeroBanner";
 const Main = () => {
   return (
     <main>
-      <HeroBanner />
       <Outlet />
     </main>
   );

@@ -1,6 +1,9 @@
 .card {
   display: flex;
   align-items: center;
+  img {
+    width: 200px;
+  }
 }
 
 .card_info {
@@ -25,4 +28,9 @@
 .categories {
   display: flex;
   color: blue;
+}
+
+.cardImage {
+  width: 200px;
+  height: 200px;
 }
