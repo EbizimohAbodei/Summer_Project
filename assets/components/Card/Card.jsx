@@ -1,11 +1,11 @@
 import React from "react";
-import "./card.css";
+import "./card.scss";
 
 function Card(props) {
   return (
     <div className="card">
-      <img src={props.image} className="cardImage" />
-      <div className="card_info">
+      <img src={props.image} />
+      <div>
         <p className="date">24.5.2022 19:30</p>
         <p className="name">{props.name}</p>
         <p className="location">
