@@ -8,8 +8,13 @@ function CardsList() {
 
   useEffect(() => {
     axios
-      .get("https://open-api.myhelsinki.fi/v1/events/")
-      .then((response) => setAllEventsData(response.data.data));
+      .get("http://api.hel.fi/linkedevents/v1/event")
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
