@@ -8,9 +8,7 @@ function CardsList() {
 
   useEffect(() => {
     axios
-      .get("https://open-api.myhelsinki.fi/v1/events/?limit=5", {
-        headers: { "Access-Control-Allow-Origin": "*" },
-      })
+      .get("https://open-api.myhelsinki.fi/v1/events/?limit=5")
       .then((response) => console.log(response));
   }, []);
 
