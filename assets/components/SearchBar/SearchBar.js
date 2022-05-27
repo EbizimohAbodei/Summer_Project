@@ -2,14 +2,30 @@ import React, { useState } from "react";
 import "./searchBar.scss";
 import { RiSearch2Line } from "react-icons/Ri";
 import { GrClose } from "react-icons/Gr";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchToggle, setSearchToggle] = useState(true);
+  const navigate = useNavigate();
 
   const showSearch = () => {
     setSearchToggle(!searchToggle);
+  };
+
+  const getCategories = () => {
+    if (searchTerm) {
+      axios
+        .get(`http://api.hel.fi/linkedevents/v1/search/?input=${searchTerm}`)
+        .then((response) => {
+          navigate(`/search/${searchTerm}`, {
+            state: { response: response.data },
+          });
+          window.location.reload();
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -22,9 +38,9 @@ export const SearchBar = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             ></input>{" "}
           </form>
-          <Link to={searchTerm && `/search/${searchTerm}`}>
+          <button onClick={getCategories}>
             <RiSearch2Line />
-          </Link>
+          </button>
         </div>
       )}
       <div className="searchButton">
