@@ -4,34 +4,21 @@
 }
 
 .searchBar {
-  input {
-    width: 40vw;
-    margin: 0.5rem;
-    padding: 0.4rem 0;
-    border: 1px solid rgb(122, 163, 204);
-    border-radius: 10px;
-  }
+  margin-top: 0.2rem;
+  display: flex;
+  flex-direction: row;
 
-  button {
+  form {
+    margin: 0 0.5rem;
+    display: inline;
+  }
+  a {
+    display: inline;
     margin: 0.5rem;
-    border: 0;
-    padding: 0.5rem;
-    border-radius: 10px;
-    background-color: rgb(122, 163, 204);
+    color: black;
 
     &:hover {
       @include hoover;
     }
-  }
-}
-
-.searchIcon {
-  margin: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 10px;
-  background-color: rgb(122, 163, 204);
-
-  &:hover {
-    @include hoover;
   }
 }
