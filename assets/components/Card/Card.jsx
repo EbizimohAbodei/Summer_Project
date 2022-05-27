@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import SingleEventPage from "../SingleEventPage/SingleEventPage";
 
 function Card(props) {
-  // const id = props.id;
+  const id = props.id.replace(/:/g, "%3A");
   return (
     <div className="card">
-      <img src={props.image} />
+      <img src={props.eventImage} />
       <div>
-        <p className="date">24.5.2022 19:30</p>
-        <Link to={`cards/${props.id}`}>{props.name}</Link>
-        <p className="location">
-          Finnish National Opera and Ballet, Helsinginkatu 58
-        </p>
+        <p className="date">{props.date}</p>
+        <Link to={`cards/${id}`}>{props.name}</Link>
+        <p className="location">{props.location}</p>
+        <p className="dateTime">{props.dateTime}</p>
+        <p className="description">{props.description}</p>
         <div className="categories">
           <p>#opera</p>
           <p>#music</p>
