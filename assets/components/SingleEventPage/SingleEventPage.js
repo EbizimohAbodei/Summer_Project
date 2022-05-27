@@ -5,11 +5,18 @@ import axios from "axios";
 import React from "react";
 
 const SingleEventPage = () => {
-  const params = useParams;
+  const params = useParams();
 
   const [event, setEvent] = useState([]);
 
-  return (
+  useEffect(() => {
+    axios
+      .get("api.hel.fi/linkedevents/v1/event/" + params.id)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  return event ? (
     <div className="eventPage">
       <h3>
         {event.name}
@@ -27,6 +34,8 @@ const SingleEventPage = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <p>Loading data</p>
   );
 };
 
