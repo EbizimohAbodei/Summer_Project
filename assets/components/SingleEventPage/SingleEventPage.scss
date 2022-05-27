@@ -1,8 +1,20 @@
 .eventPage {
   border: 1px solid red;
-  align-items: center;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 
 .eventInfo {
   display: flex;
+}
+
+.leftColumn {
+  min-width: 20vw;
+  margin-top: 1rem;
+}
+
+.rightColumn {
+  word-wrap: break-word;
+  border: 1px solid green;
+  margin-top: 1rem;
 }
