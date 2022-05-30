@@ -2,12 +2,7 @@ import React from "react";
 import "./HeroBanner.scss";
 
 const HeroBanner = () => {
-  return (
-    <div className="heroBanner">
-      <h1>This will be the Herobanner</h1>
-      <h3>This might be the place for the searchbar component??</h3>
-    </div>
-  );
+  return <div className="heroBanner"></div>;
 };
 
 export default HeroBanner;

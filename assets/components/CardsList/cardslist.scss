@@ -9,13 +9,9 @@
 }
 
 .cardsList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.5rem;
-  margin: auto;
-  height: auto;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  min-height: 2rem;
 }
 
 .cardListNav {

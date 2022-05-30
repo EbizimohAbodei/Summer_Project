@@ -7,7 +7,7 @@ import axios from "axios";
 
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchToggle, setSearchToggle] = useState(true);
+  const [searchToggle, setSearchToggle] = useState(false);
   const navigate = useNavigate();
 
   const showSearch = () => {
