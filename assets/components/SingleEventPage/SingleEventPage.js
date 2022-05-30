@@ -18,6 +18,7 @@ const SingleEventPage = () => {
         setEvent(res.data);
         console.log(res.data);
         setImage(res.data.images[0]?.url);
+        console.log(res.data.location);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -41,8 +42,9 @@ const SingleEventPage = () => {
           <p>
             {new Date(event?.start_time).toLocaleDateString()},{" "}
             {new Date(event?.start_time).toLocaleTimeString()} -{" "}
-            {new Date(event?.start_time).toLocaleDateString() ===
-            new Date(event?.end_time).toLocaleDateString()
+            {new Date(event?.start_time) === new Date(event?.end_time)
+              ? ""
+              : new Date(event?.start_time) > event?.end_time
               ? ""
               : new Date(event?.end_time).toLocaleDateString() + ", "}
             {new Date(event?.end_time).toLocaleTimeString()}
@@ -53,6 +55,14 @@ const SingleEventPage = () => {
                 event?.short_description?.fi ||
                 event?.short_description?.sv
             )}
+          </p>
+          <p>
+            <a
+              href={event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+              target="_blank"
+            >
+              {event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+            </a>
           </p>
         </div>
         <div className="rightColumn">
