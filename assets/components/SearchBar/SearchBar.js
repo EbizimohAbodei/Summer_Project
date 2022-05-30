@@ -7,6 +7,8 @@ import axios from "axios";
 
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  // const [startDate, setStartDate] = useState(new Date());
+  // const [endDate, setEndDate] = useState();
   const [searchToggle, setSearchToggle] = useState(false);
   const navigate = useNavigate();
 
@@ -36,9 +38,9 @@ export const SearchBar = () => {
             <input
               type="text"
               onChange={(e) => setSearchTerm(e.target.value)}
-            ></input>{" "}
+            ></input>
           </form>
-          <button onClick={getCategories}>
+          <button type="submit" onClick={getCategories}>
             <RiSearch2Line />
           </button>
         </div>
