@@ -9,16 +9,27 @@ const SingleEventPage = () => {
 
   const [event, setEvent] = useState([]);
   const [place, setPlace] = useState([]);
+  const [image, setImage] = useState("http://source.unsplash.com/afW1hht0NSs");
 
   useEffect(() => {
     axios
-      .get("http://api.hel.fi/linkedevents/v1/event/" + params.id)
+      .get("https://api.hel.fi/linkedevents/v1/event/" + params.id)
       .then((res) => {
         setEvent(res.data);
         console.log(res.data);
+        setImage(res.data.images[0]?.url);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const removeTags = (str) => {
+    if (!str) {
+      return "no description";
+    } else {
+      str.toString();
+    }
+    return str.replace(/(<([^>]+)>)/gi, " ");
+  };
 
   return event ? (
     <div className="eventPage">
@@ -26,20 +37,28 @@ const SingleEventPage = () => {
       <div className="eventInfo">
         <div className="leftColumn">
           <h4>{event?.name?.fi}</h4>
+          <img src={image} className="image" />
           <p>
             {new Date(event?.start_time).toLocaleDateString()},{" "}
             {new Date(event?.start_time).toLocaleTimeString()} -{" "}
-            {new Date(event?.end_time).toLocaleDateString()},{" "}
+            {new Date(event?.start_time).toLocaleDateString() ===
+            new Date(event?.end_time).toLocaleDateString()
+              ? ""
+              : new Date(event?.end_time).toLocaleDateString() + ", "}
             {new Date(event?.end_time).toLocaleTimeString()}
           </p>
           <p>
-            {event?.short_description?.en ||
-              event?.short_description?.fi ||
-              event?.short_description?.sv}
+            {removeTags(
+              event?.short_description?.en ||
+                event?.short_description?.fi ||
+                event?.short_description?.sv
+            )}
           </p>
         </div>
         <div className="rightColumn">
-          {event?.description?.en || event?.description?.fi || event?.description?.sv}
+          {removeTags(
+            event?.description?.en || event?.description?.fi || event?.description?.sv
+          )}
         </div>
       </div>
     </div>
