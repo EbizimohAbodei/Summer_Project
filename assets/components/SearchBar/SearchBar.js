@@ -9,6 +9,7 @@ export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   // const [startDate, setStartDate] = useState(new Date());
   // const [endDate, setEndDate] = useState();
+  const [tags, setTags] = useState([]);
   const [searchToggle, setSearchToggle] = useState(false);
   const navigate = useNavigate();
 
