@@ -7,9 +7,8 @@ import axios from "axios";
 
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [endDate, setEndDate] = useState();
-  const [tags, setTags] = useState([]);
+  const [startDate, setStartDate] = useState("today");
+  const [endDate, setEndDate] = useState(null);
   const [searchToggle, setSearchToggle] = useState(false);
   const navigate = useNavigate();
 
@@ -17,10 +16,16 @@ export const SearchBar = () => {
     setSearchToggle(!searchToggle);
   };
 
-  const getCategories = () => {
+  const getCategories = (e) => {
+    e.preventDefault();
     if (searchTerm) {
+      const startEnd = endDate
+        ? `&start=${startDate}&end=${endDate}`
+        : `&start=${startDate}`;
       axios
-        .get(`http://api.hel.fi/linkedevents/v1/search/?input=${searchTerm}`)
+        .get(
+          `http://api.hel.fi/linkedevents/v1/search/?type=event&input=${searchTerm}${startEnd}`
+        )
         .then((response) => {
           navigate(`/search/${searchTerm}`, {
             state: { response: response.data },
@@ -35,19 +40,31 @@ export const SearchBar = () => {
     <div className="searchBar">
       {searchToggle && (
         <div>
-          <form>
+          <form onSubmit={(e) => getCategories(e)}>
+            <label htmlFor="start">Start date:</label>
+            <input
+              onChange={(e) => setStartDate(e.target.value)}
+              id="start"
+              type="date"
+            />
+            <label htmlFor="end">End date:</label>
+            <input
+              onChange={(e) => setEndDate(e.target.value)}
+              id="end"
+              type="date"
+            />
             <input
               type="text"
               onChange={(e) => setSearchTerm(e.target.value)}
             ></input>
+            <button id="subButton" type="submit">
+              <RiSearch2Line />
+            </button>
           </form>
-          <button type="submit" onClick={getCategories}>
-            <RiSearch2Line />
-          </button>
         </div>
       )}
       <div className="searchButton">
-        <button onClick={showSearch}>
+        <button type="button" onClick={showSearch}>
           {searchToggle ? <GrClose /> : <RiSearch2Line />}
         </button>
       </div>
