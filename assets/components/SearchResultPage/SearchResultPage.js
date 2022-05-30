@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Categories } from "../Categories/Categories";
 import "./SearchResultPage.scss";
 
@@ -14,7 +14,7 @@ const removeTags = (str) => {
 };
 
 const SearchResultPage = () => {
-  const { response: searchResult } = useLocation().state;
+  const searchResult = useLocation().state.response;
   const [events, setEvents] = useState(searchResult.data);
   const [meta, setMeta] = useState(searchResult.meta);
 
@@ -26,9 +26,15 @@ const SearchResultPage = () => {
     });
   };
 
-  if (!events) {
-    return <p> loading ... </p>;
+  if (events.length === 0) {
+    return (
+      <div>
+        <Categories />
+        <p>No results</p>
+      </div>
+    );
   }
+
   return (
     <div className="eventContainer">
       <Categories />
