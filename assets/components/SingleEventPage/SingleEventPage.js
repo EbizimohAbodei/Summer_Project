@@ -9,7 +9,7 @@ const SingleEventPage = () => {
 
   const [event, setEvent] = useState([]);
   const [place, setPlace] = useState([]);
-  const [image, setImage] = useState("http://source.unsplash.com/afW1hht0NSs");
+  const [image, setImage] = useState();
   const [price, setPrice] = useState({ is_free: true });
 
   useEffect(() => {
@@ -17,7 +17,9 @@ const SingleEventPage = () => {
       .get("https://api.hel.fi/linkedevents/v1/event/" + params.id)
       .then((res) => {
         setEvent(res.data);
-        setImage(res.data?.images[0]?.url);
+        res.data?.images[0]
+          ? setImage(res.data?.images[0]?.url)
+          : setImage("http://source.unsplash.com/afW1hht0NSs");
         setPrice(res.data?.offers[0]);
         console.log(res.data);
         axios
@@ -32,15 +34,6 @@ const SingleEventPage = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  const removeTags = (str) => {
-    if (!str) {
-      return "no description";
-    } else {
-      str.toString();
-    }
-    return str.replace(/(<([^>]+)>)/gi, " ");
-  };
 
   return event ? (
     <div className="eventPage">
@@ -78,13 +71,14 @@ const SingleEventPage = () => {
               place?.address_locality?.sv}
           </p>
           <p>{place?.name?.en || place?.name?.fi || place?.name?.sv}</p>
-          <p>
-            {removeTags(
-              event?.short_description?.en ||
+          <div
+            dangerouslySetInnerHTML={{
+              __html:
+                event?.short_description?.en ||
                 event?.short_description?.fi ||
-                event?.short_description?.sv
-            )}
-          </p>
+                event?.short_description?.sv,
+            }}
+          ></div>
           <p></p>
         </div>
       </div>
