@@ -18,8 +18,14 @@ const SingleEventPage = () => {
       .then((res) => {
         setEvent(res.data);
         res.data?.images[0]
-          ? setImage(res.data?.images[0]?.url)
-          : setImage("http://source.unsplash.com/afW1hht0NSs");
+          ? axios
+              .get(res.data?.images[0]["@id"])
+              .then((res) => {
+                console.log(res.data);
+                setImage(res.data);
+              })
+              .catch((err) => console.log("Something went wrong ", err))
+          : setImage({ url: "http://source.unsplash.com/afW1hht0NSs" });
         setPrice(res.data?.offers[0]);
         console.log(res.data);
         axios
@@ -38,9 +44,24 @@ const SingleEventPage = () => {
   return event ? (
     <div className="eventPage">
       <div className="eventInfo">
-        <img src={image} className="image" />
+        <div className="imageContainer">
+          <img src={image?.url} className="image" alt={image?.alt_text} />
+          <p>
+            <small>{image?.photographer_name}</small>
+          </p>
+        </div>
         <div className="eventData">
-          <h2>{event?.name?.fi}</h2>
+          <h2>{event?.name?.en || event?.name?.fi || event?.name?.sv}</h2>
+          <p>
+            <small>
+              <a
+                href={event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+                target="_blank"
+              >
+                {event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+              </a>
+            </small>
+          </p>
           <p>
             {new Date(event?.start_time).toLocaleDateString().replaceAll("/", ".")},{" "}
             {new Date(event?.start_time).toLocaleTimeString()} -{" "}
@@ -59,6 +80,12 @@ const SingleEventPage = () => {
               ? "Free"
               : price.price?.en || price.price?.fi || price.price?.sv}
           </h4>
+          <p>{place?.name?.en || place?.name?.fi || place?.name?.sv}</p>
+          <p>
+            {event?.location_extra_info?.en ||
+              event?.location_extra_info?.fi ||
+              event?.location_extra_info?.sv}
+          </p>
           <p>
             {place?.street_address?.en ||
               place?.street_address?.fi ||
@@ -70,7 +97,6 @@ const SingleEventPage = () => {
               place?.address_locality?.fi ||
               place?.address_locality?.sv}
           </p>
-          <p>{place?.name?.en || place?.name?.fi || place?.name?.sv}</p>
           <div
             dangerouslySetInnerHTML={{
               __html:
