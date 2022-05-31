@@ -9,16 +9,14 @@ function Card(props) {
     <div className="card">
       <img src={props.eventImage || image} />
       <div>
-        <p className="date">{props.date}</p>
-        <Link to={`cards/${id}`}>{props.name}</Link>
+        <Link to={`cards/${id}`} className="name">
+          {props.name}
+        </Link>
+        <p className="dateTime">
+          {props.date}, {props.time}
+        </p>
         <p className="location">{props.location}</p>
-        <p className="dateTime">{props.dateTime}</p>
         <p className="description">{props.description}</p>
-        <div className="categories">
-          <p>#opera</p>
-          <p>#music</p>
-          <p>#concerts</p>
-        </div>
       </div>
     </div>
   );

@@ -10,7 +10,9 @@ function CardsList() {
 
   useEffect(() => {
     axios
-      .get("http://api.hel.fi/linkedevents/v1/event")
+      .get(
+        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=34&start=today"
+      )
       .then((response) => {
         setAllEventsData(response?.data);
         setMeta(response.data.meta);
@@ -22,7 +24,7 @@ function CardsList() {
 
   const prevPage = () => {
     axios
-      .get(`${meta.previous}`)
+      .get(`${meta.next}`)
       .then((res) => {
         setAllEventsData(res?.data);
         setMeta(res?.data?.meta);
@@ -35,7 +37,7 @@ function CardsList() {
 
   const nextPage = () => {
     axios
-      .get(`${meta.next}`)
+      .get(`${meta.previous}`)
       .then((res) => {
         setAllEventsData(res?.data);
         setMeta(res?.data?.meta);
@@ -52,6 +54,11 @@ function CardsList() {
       <div className="heroBanner">
         <HeroBanner />
       </div>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: "<p>First &middot; Second</p>",
+        }}
+      />
       <div className="cardsList">
         {allEventsData?.data?.map((item) => {
           return (
@@ -64,7 +71,8 @@ function CardsList() {
                 item.location_extra_info?.fi ||
                 item.location_extra_info?.sv
               }
-              dateTime={item?.start_time.replace(/T/g, " Time:").slice(0, -4)}
+              date={new Date(item?.start_time).toLocaleDateString()}
+              time={new Date(item?.start_time).toLocaleTimeString()}
               description={
                 item.short_description.en ||
                 item.short_description.fi ||
@@ -76,9 +84,11 @@ function CardsList() {
         })}
       </div>
       <div className="cardListNav">
-        <button className="prevButton" onClick={prevPage}>
-          Prev-page
-        </button>
+        {meta.previous !== null && (
+          <button className="prevButton" onClick={prevPage}>
+            Prev-page
+          </button>
+        )}
         <button className="nextButton" onClick={nextPage}>
           Next-page
         </button>
