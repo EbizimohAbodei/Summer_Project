@@ -66,8 +66,20 @@ function CardsList() {
                 item.location_extra_info?.fi ||
                 item.location_extra_info?.sv
               }
-              date={new Date(item?.start_time).toLocaleDateString()}
-              time={new Date(item?.start_time).toLocaleTimeString()}
+              startDate={new Date(item?.start_time).toLocaleDateString()}
+              startTime={new Date(item?.start_time).toLocaleTimeString()}
+              endDate={
+                new Date(item?.end_time).toLocaleDateString() ===
+                new Date(item?.start_time).toLocaleDateString()
+                  ? ""
+                  : new Date(item?.end_time).toLocaleDateString()
+              }
+              endTime={new Date(item?.end_time).toLocaleTimeString()}
+              // dateTime={
+              //   start_date === end_date
+              //     ? `${end_date}, ${start_time} - ${end_time}`
+              //     : `${start_date} ${start_time} - ${end_date} ${start_time}`
+              // }
               description={
                 item.short_description.en ||
                 item.short_description.fi ||

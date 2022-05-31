@@ -13,7 +13,7 @@ function Card(props) {
           {props.name}
         </Link>
         <p className="dateTime">
-          {props.date}, {props.time}
+          {props.startDate} {props.startTime} - {props.endDate} {props.endTime}
         </p>
         <p className="location">{props.location}</p>
         <p className="description">{props.description}</p>
