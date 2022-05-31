@@ -16,9 +16,17 @@ const SingleEventPage = () => {
       .get("https://api.hel.fi/linkedevents/v1/event/" + params.id)
       .then((res) => {
         setEvent(res.data);
-        console.log(res.data);
         setImage(res.data.images[0]?.url);
-        console.log(res.data.location);
+        console.log(res.data);
+        axios
+          .get(res.data.location["@id"])
+          .then((res) => {
+            setPlace(res.data);
+            console.log(res.data);
+          })
+          .catch((err) =>
+            console.log("An error happened while looking place information: ", err)
+          );
       })
       .catch((err) => console.log(err));
   }, []);
@@ -49,6 +57,12 @@ const SingleEventPage = () => {
               : new Date(event?.end_time).toLocaleDateString() + ", "}
             {new Date(event?.end_time).toLocaleTimeString()}
           </p>
+          <p>
+            {place?.street_address?.en ||
+              place?.street_address?.fi ||
+              place?.street_address?.sv}
+          </p>
+          <p>{place?.name?.en || place?.name?.fi || place?.name?.sv}</p>
           <p>
             {removeTags(
               event?.short_description?.en ||
