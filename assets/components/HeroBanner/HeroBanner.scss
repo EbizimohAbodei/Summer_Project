@@ -1,4 +1,5 @@
 .heroBanner {
+  position: relative;
   width: 100%;
   height: 71vh;
   background-image: url("https://images.unsplash.com/photo-1501238295340-c810d3c156d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
@@ -6,4 +7,44 @@
   background-position: bottom;
   background-repeat: no-repeat;
   text-align: center;
+
+  p {
+    position: absolute;
+    top: 65%;
+    left: 15%;
+    font-size: 4.5rem;
+    color: #fefefe;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 20%);
+  }
+
+  .sports {
+    background-image: url("https://images.unsplash.com/photo-1564833592193-3270b5618e7f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80");
+    background-position: center;
+  }
+
+  .kids {
+    background-image: url("https://images.unsplash.com/photo-1611153661566-9cb802ffe968?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2772&q=80");
+    background-position: center;
+  }
+
+  .art {
+    background-image: url("https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2910&q=80");
+    background-position: center;
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: 137px 20px;
+    background-image: url(./mask.svg);
+    background-repeat: repeat-x;
+    z-index: 10;
+    transform: rotate(180deg);
+  }
 }
