@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Categories } from "../Categories/Categories";
 import "./SearchResultPage.scss";
 
 const removeTags = (str) => {
@@ -29,7 +28,6 @@ const SearchResultPage = () => {
   if (events.length === 0) {
     return (
       <div>
-        <Categories />
         <p>No results</p>
       </div>
     );
@@ -37,7 +35,6 @@ const SearchResultPage = () => {
 
   return (
     <div className="eventContainer">
-      <Categories />
       {events.map((event, i) => {
         let image;
         try {
