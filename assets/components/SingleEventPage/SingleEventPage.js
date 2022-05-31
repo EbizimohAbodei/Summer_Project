@@ -25,14 +25,15 @@ const SingleEventPage = () => {
                 setImage(res.data);
               })
               .catch((err) => console.log("Something went wrong ", err))
-          : setImage({ url: "http://source.unsplash.com/afW1hht0NSs" });
+          : setImage({
+              url: "http://source.unsplash.com/afW1hht0NSs",
+              photographer_name: "Unsplash",
+            });
         setPrice(res.data?.offers[0]);
-        console.log(res.data);
         axios
           .get(res.data.location["@id"])
           .then((res) => {
             setPlace(res.data);
-            console.log(res.data);
           })
           .catch((err) =>
             console.log("An error happened while looking place information: ", err)
@@ -45,7 +46,7 @@ const SingleEventPage = () => {
     <div className="eventPage">
       <div className="eventInfo">
         <div className="imageContainer">
-          <img src={image?.url} className="image" alt={image?.alt_text} />
+          <img src={image?.url} className="image" alt={image?.alt_text || ""} />
           <p>
             <small>{image?.photographer_name}</small>
           </p>
