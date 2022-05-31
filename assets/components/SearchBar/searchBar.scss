@@ -1,24 +1,89 @@
+$inputbg: #a9d1d0;
+$inputbgfocus: rgb(190, 210, 210);
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@mixin slide-in($duration) {
+  animation: slide-in $duration ease-in-out both;
+}
+
 @mixin hoover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+@mixin foocus {
+  background-color: $inputbgfocus;
 }
 
 .searchBar {
   margin-top: 0.2rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
+
+  .formContainer {
+    @include slide-in(0.5s);
+  }
 
   form {
     margin: 0 0.5rem;
     display: inline;
+
+    input[type="text"] {
+      border-radius: 2px;
+      border: 1px solid black;
+      padding: 0.3rem;
+      width: 20vw;
+      &:focus {
+        outline: none !important;
+        border: 2px solid rgb(76, 210, 210);
+      }
+    }
+
+    input[type="date"] {
+      border-radius: 2px;
+      margin: 0.5rem;
+      padding: 0.4rem;
+      background-color: $inputbg;
+      border: none;
+      outline: none;
+      &:focus {
+        @include foocus;
+      }
+    }
+    .submitButton {
+      transform: translateY(1px);
+      margin: 0.1rem;
+    }
   }
   button {
+    border-radius: 2px;
     display: inline;
-    margin: 0.5rem;
     color: black;
+    background-color: $inputbg;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0.4;
+    height: 27px;
+    width: 26px;
 
     &:hover {
       @include hoover;
     }
+  }
+
+  .searchButton {
+    margin: 0.5rem;
   }
 }

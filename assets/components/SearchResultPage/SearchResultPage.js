@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./SearchResultPage.scss";
 
@@ -16,9 +16,23 @@ const SearchResultPage = () => {
   const searchResult = useLocation().state.response;
   const [events, setEvents] = useState(searchResult.data);
   const [meta, setMeta] = useState(searchResult.meta);
+  const [tags, setTags] = useState();
+
+  useEffect(() => {
+    const getTags = searchResult.data.map((tag) => {
+      const fetchCalls = tag.keywords.map((singleEvent) => {
+        const fetchArr = Object.values(singleEvent);
+        return axios.get(fetchArr[0]);
+      });
+      axios.all(fetchCalls).then(
+        axios.spread((...res) => {
+          setTags(res);
+        })
+      );
+    });
+  }, []);
 
   const changePage = (fetch) => {
-    console.log("change page triggered");
     axios.get(fetch).then((res) => {
       setEvents(res.data.data);
       setMeta(res.data.meta);
@@ -32,7 +46,7 @@ const SearchResultPage = () => {
       </div>
     );
   }
-
+  console.log(tags);
   return (
     <div className="eventContainer">
       {events.map((event, i) => {
@@ -60,7 +74,9 @@ const SearchResultPage = () => {
         const end_time = new Date(event.end_time).toLocaleDateString();
 
         const startEndTime =
-          start_time === end_time ? start_time : `${start_time} - ${end_time}`;
+          start_time === end_time || start_time > end_time
+            ? start_time
+            : `${start_time} - ${end_time}`;
 
         return (
           <div key={i} className="singleEvent">
