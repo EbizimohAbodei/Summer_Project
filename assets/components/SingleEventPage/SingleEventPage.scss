@@ -1,24 +1,30 @@
 .eventPage {
-  border: 1px solid red;
   box-sizing: border-box;
-  padding: 1rem;
+
+  .eventInfo {
+    display: flex;
+    width: 100%;
+  }
+
+  .description {
+    word-wrap: break-word;
+    margin: 5%;
+    text-align: justify;
+  }
+
+  .image {
+    width: 50%;
+    object-fit: cover;
+    object-position: left;
+  }
 }
 
-.eventInfo {
-  display: flex;
-}
+.eventData {
+  margin-top: 5%;
+  margin-left: 3rem;
+  margin-right: 5%;
 
-.leftColumn {
-  min-width: 20vw;
-  margin-top: 1rem;
-}
-
-.rightColumn {
-  word-wrap: break-word;
-  border: 1px solid green;
-  margin-top: 1rem;
-}
-
-.image {
-  max-width: 300px;
+  h2 {
+    font-size: xx-large;
+  }
 }
