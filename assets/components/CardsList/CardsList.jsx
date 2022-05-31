@@ -70,7 +70,9 @@ function CardsList() {
               startTime={new Date(item?.start_time).toLocaleTimeString()}
               endDate={
                 new Date(item?.end_time).toLocaleDateString() ===
-                new Date(item?.start_time).toLocaleDateString()
+                  new Date(item?.start_time).toLocaleDateString() ||
+                new Date(item?.start_time).toLocaleDateString() >
+                  new Date(item?.end_time).toLocaleDateString()
                   ? ""
                   : new Date(item?.end_time).toLocaleDateString()
               }
