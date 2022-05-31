@@ -75,11 +75,6 @@ function CardsList() {
                   : new Date(item?.end_time).toLocaleDateString()
               }
               endTime={new Date(item?.end_time).toLocaleTimeString()}
-              // dateTime={
-              //   start_date === end_date
-              //     ? `${end_date}, ${start_time} - ${end_time}`
-              //     : `${start_date} ${start_time} - ${end_date} ${start_time}`
-              // }
               description={
                 item.short_description.en ||
                 item.short_description.fi ||
