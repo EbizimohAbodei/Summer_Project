@@ -11,7 +11,7 @@ function CardsList() {
   useEffect(() => {
     axios
       .get(
-        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=34&start=today"
+        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=36&start=today"
       )
       .then((response) => {
         setAllEventsData(response?.data);
@@ -54,11 +54,6 @@ function CardsList() {
       <div className="heroBanner">
         <HeroBanner />
       </div>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: "<p>First &middot; Second</p>",
-        }}
-      />
       <div className="cardsList">
         {allEventsData?.data?.map((item) => {
           return (
