@@ -10,9 +10,7 @@ function CardsList() {
 
   useEffect(() => {
     axios
-      .get(
-        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=36&start=today"
-      )
+      .get("http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=38&start=today")
       .then((response) => {
         setAllEventsData(response?.data);
         setMeta(response.data.meta);
@@ -70,7 +68,9 @@ function CardsList() {
               startTime={new Date(item?.start_time).toLocaleTimeString()}
               endDate={
                 new Date(item?.end_time).toLocaleDateString() ===
-                new Date(item?.start_time).toLocaleDateString()
+                  new Date(item?.start_time).toLocaleDateString() ||
+                new Date(item?.start_time).toLocaleDateString() >
+                  new Date(item?.end_time).toLocaleDateString()
                   ? ""
                   : new Date(item?.end_time).toLocaleDateString()
               }
