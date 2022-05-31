@@ -42,22 +42,10 @@ const SingleEventPage = () => {
 
   return event ? (
     <div className="eventPage">
-      <a
-        href={event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
-        target="_blank"
-      >
-        <h2>{event?.name?.fi}</h2>
-        <p>
-          <small>
-            {event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
-          </small>
-        </p>
-      </a>
       <div className="eventInfo">
-        <div className="leftColumn">
-          {/* <h4>{event?.name?.fi}</h4> */}
-
-          <img src={image} className="image" />
+        <img src={image} className="image" />
+        <div className="eventData">
+          <h2>{event?.name?.fi}</h2>
           <p>
             {new Date(event?.start_time).toLocaleDateString()},{" "}
             {new Date(event?.start_time).toLocaleTimeString()} -{" "}
@@ -89,11 +77,11 @@ const SingleEventPage = () => {
           </p>
           <p></p>
         </div>
-        <div className="rightColumn">
-          {removeTags(
-            event?.description?.en || event?.description?.fi || event?.description?.sv
-          )}
-        </div>
+      </div>
+      <div className="description">
+        {removeTags(
+          event?.description?.en || event?.description?.fi || event?.description?.sv
+        )}
       </div>
     </div>
   ) : (
