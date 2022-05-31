@@ -20,7 +20,6 @@ const Header = () => {
       <Link to="/">
         <h1>Helsinki Events</h1>
       </Link>
-      <NavLink to="/">Events</NavLink>
       <SearchBar />
     </header>
   );

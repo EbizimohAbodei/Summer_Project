@@ -1,40 +1,40 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Categories } from "../Categories/Categories";
 import "./SearchResultPage.scss";
+
+const removeTags = (str) => {
+  if (!str) {
+    return "no description";
+  } else {
+    str.toString();
+  }
+  return str.replace(/(<([^>]+)>)/gi, "");
+};
 
 const SearchResultPage = () => {
   const searchResult = useLocation().state.response;
   const [events, setEvents] = useState(searchResult.data);
   const [meta, setMeta] = useState(searchResult.meta);
 
-  const removeTags = (str) => {
-    if (!str) {
-      return "no description";
-    } else {
-      str.toString();
-    }
-    return str.replace(/(<([^>]+)>)/gi, "");
-  };
-
   const changePage = (fetch) => {
     console.log("change page triggered");
     axios.get(fetch).then((res) => {
-      console.log(res.data.meta);
       setEvents(res.data.data);
       setMeta(res.data.meta);
     });
   };
 
-  // useEffect(() => {
-  //   setEvents(searchResult.data);
-  //   setMeta(searchResult.meta);
-  // }, []);
-  console.log("meta: ", meta);
-  if (!events) {
-    return <p> loading ... </p>;
+  if (events.length === 0) {
+    return (
+      <div>
+        <Categories />
+        <p>No results</p>
+      </div>
+    );
   }
+
   return (
     <div className="eventContainer">
       <Categories />
@@ -45,15 +45,26 @@ const SearchResultPage = () => {
         } catch {
           image = "http://source.unsplash.com/afW1hht0NSs";
         }
+
         const description = event.description
           ? event.description.fi
           : "no description";
+        const shortDescription = event.short_description
+          ? event.short_description.en || event.short_description.fi
+          : "";
         let eventName = event.name
           ? event.name.en || event.name.fi || event.name.sv
           : "No name";
+
         if (eventName.split(" ").length > 10) {
           eventName = eventName.split(" ").slice(0, 10).join(" ") + "...";
         }
+        const start_time = new Date(event.start_time).toLocaleDateString();
+        const end_time = new Date(event.end_time).toLocaleDateString();
+
+        const startEndTime =
+          start_time === end_time ? start_time : `${start_time} - ${end_time}`;
+
         return (
           <div key={i} className="singleEvent">
             <img style={{ height: "10rem" }} src={image} />
@@ -61,11 +72,8 @@ const SearchResultPage = () => {
               <Link to={`/cards/${event?.id}`}>
                 <h1>{eventName}</h1>
               </Link>
-              <em>
-                {event.street_address
-                  ? `${event.street_address.fi},${event.address_locality.fi}`
-                  : "no address"}
-              </em>
+              <em>{startEndTime}</em>
+              <p>{shortDescription}</p>
               <p>{removeTags(description).slice(0, 200)}</p>
             </div>
           </div>
@@ -92,34 +100,18 @@ const SearchResultPage = () => {
 
 export default SearchResultPage;
 
-// `http://api.hel.fi/linkedevents/v1/event/?keyword=yso:p7179`
-
-// const ids = response.data.data.map(
-//   (keyword) =>
-//     axios.get`http://api.hel.fi/linkedevents/v1/event/?keyword=${keyword.id}`
-// );
-
-// const getCategories = () => {
-//   axios
-//     .get(`http://api.hel.fi/linkedevents/v1/keyword/?text=${searchTerm}`)
-//     .then((response) => {
-//       const data = response.data.data.map((keyword) => keyword.id);
-//       if (searchTerm) {
-//         navigate(`/search/${searchTerm}`, {
-//           state: { response: data },
-//         });
-//       }
-//     })
-//     .catch((err) => console.log(err));
+// const getEvents = () => {
+//   const getTags = searchResult.data.map((tag) => {
+//     const fetchCalls = tag.keywords.map((singleEvent) => {
+//       const fetchArr = Object.values(singleEvent);
+//       return axios.get(fetchArr[0]);
+//     });
+//     axios.all(fetchCalls).then(
+//       axios.spread((...res) => {
+//         console.log(res);
+//       })
+//     );
+//   });
 // };
 
-// const fetches = location.state.response.map((category) =>
-// axios.get(`http://api.hel.fi/linkedevents/v1/event/?keyword=${category}`)
-// );
-
-// if (searchTerm) {
-//     axios
-//       .get(`http://api.hel.fi/linkedevents/v1/search/?input=${searchTerm}`)
-//       .then((response) => setEvents(response.data))
-//       .catch((err) => console.log(err));
-//   }
+// getEvents();
