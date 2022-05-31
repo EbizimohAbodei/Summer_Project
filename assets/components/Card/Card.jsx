@@ -9,11 +9,11 @@ function Card(props) {
     <div className="card">
       <img src={props.eventImage || image} />
       <div>
-        <Link to={`cards/${id}`} className="name">
+        <Link target="_blank" to={`cards/${id}`} className="name">
           {props.name}
         </Link>
         <p className="dateTime">
-          {props.date}, {props.time}
+          {props.startDate} {props.startTime} - {props.endDate} {props.endTime}
         </p>
         <p className="location">{props.location}</p>
         <p className="description">{props.description}</p>

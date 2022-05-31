@@ -66,8 +66,15 @@ function CardsList() {
                 item.location_extra_info?.fi ||
                 item.location_extra_info?.sv
               }
-              date={new Date(item?.start_time).toLocaleDateString()}
-              time={new Date(item?.start_time).toLocaleTimeString()}
+              startDate={new Date(item?.start_time).toLocaleDateString()}
+              startTime={new Date(item?.start_time).toLocaleTimeString()}
+              endDate={
+                new Date(item?.end_time).toLocaleDateString() ===
+                new Date(item?.start_time).toLocaleDateString()
+                  ? ""
+                  : new Date(item?.end_time).toLocaleDateString()
+              }
+              endTime={new Date(item?.end_time).toLocaleTimeString()}
               description={
                 item.short_description.en ||
                 item.short_description.fi ||
