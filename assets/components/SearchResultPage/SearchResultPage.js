@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { GrActions } from "react-icons/gr";
 import { Link, useLocation } from "react-router-dom";
 import "./SearchResultPage.scss";
 
@@ -16,20 +17,20 @@ const SearchResultPage = () => {
   const searchResult = useLocation().state.response;
   const [events, setEvents] = useState(searchResult.data);
   const [meta, setMeta] = useState(searchResult.meta);
-  const [tags, setTags] = useState();
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    const getTags = searchResult.data.map((tag) => {
-      const fetchCalls = tag.keywords.map((singleEvent) => {
-        const fetchArr = Object.values(singleEvent);
-        return axios.get(fetchArr[0]);
+    const getTags = searchResult.data.map((tag, i) => {
+      return tag.keywords.map((singleEvent) => {
+        return axios.get(singleEvent["@id"]);
       });
-      axios.all(fetchCalls).then(
-        axios.spread((...res) => {
-          setTags(res);
-        })
-      );
     });
+    const allTags = axios.all(
+      getTags.map((tagArr) => {
+        return axios.all(tagArr);
+      })
+    );
+    allTags.then(axios.spread((...res) => setTags(res)));
   }, []);
 
   const changePage = (fetch) => {
@@ -39,17 +40,32 @@ const SearchResultPage = () => {
     });
   };
 
-  if (events.length === 0) {
+  if (events.length === 0 || tags.length === 0) {
     return (
       <div>
         <p>No results</p>
       </div>
     );
   }
-  console.log(tags);
+
   return (
     <div className="eventContainer">
       {events.map((event, i) => {
+        const singleEventTags = tags[i].map((tag) => {
+          return (
+            <p
+              style={{
+                display: "inline-block",
+                margin: "0 0.5rem",
+                backgroundColor: "blue",
+              }}
+            >
+              {tag.data.name.en || tag.data.name.fi || tag.data.name.sv}
+            </p>
+          );
+        });
+        console.log(singleEventTags);
+
         let image;
         try {
           image = event.images[0].url;
@@ -87,7 +103,8 @@ const SearchResultPage = () => {
               </Link>
               <em>{startEndTime}</em>
               <p>{shortDescription}</p>
-              <p>{removeTags(description).slice(0, 200)}</p>
+              {/* <p>{removeTags(description).slice(0, 200)}</p> */}
+              <div> {singleEventTags} </div>
             </div>
           </div>
         );
@@ -126,5 +143,9 @@ export default SearchResultPage;
 //     );
 //   });
 // };
+
+// Promise.all(tags[i]).then((res) => {
+//   singleEventTags = res;
+// });
 
 // getEvents();

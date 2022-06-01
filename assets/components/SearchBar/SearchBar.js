@@ -50,6 +50,7 @@ export const SearchBar = ({ showSearch, searchToggle }) => {
                 type="date"
               />
               <input
+                placeholder="Search for events"
                 type="text"
                 onChange={(e) => setSearchTerm(e.target.value)}
               ></input>
