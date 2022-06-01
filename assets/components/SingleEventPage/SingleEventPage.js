@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./SingleEventPage.scss";
+import Map from "../Map/Map";
 import axios from "axios";
 import React from "react";
 
@@ -36,7 +37,10 @@ const SingleEventPage = () => {
             setPlace(res.data);
           })
           .catch((err) =>
-            console.log("An error happened while looking place information: ", err)
+            console.log(
+              "An error happened while looking place information: ",
+              err
+            )
           );
       })
       .catch((err) => console.log(err));
@@ -44,6 +48,7 @@ const SingleEventPage = () => {
 
   return event ? (
     <div className="eventPage">
+      {console.log(place)}
       <div className="eventInfo">
         <div className="imageContainer">
           <img src={image?.url} className="image" alt={image?.alt_text || ""} />
@@ -56,23 +61,32 @@ const SingleEventPage = () => {
           <p>
             <small>
               <a
-                href={event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+                href={
+                  event?.info_url?.en ||
+                  event?.info_url?.fi ||
+                  event?.info_url?.sv
+                }
                 target="_blank"
               >
-                {event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+                {event?.info_url?.en ||
+                  event?.info_url?.fi ||
+                  event?.info_url?.sv}
               </a>
             </small>
           </p>
           <p>
-            {new Date(event?.start_time).toLocaleDateString().replaceAll("/", ".")},{" "}
-            {new Date(event?.start_time).toLocaleTimeString()} -{" "}
+            {new Date(event?.start_time)
+              .toLocaleDateString()
+              .replaceAll("/", ".")}
+            , {new Date(event?.start_time).toLocaleTimeString()} -{" "}
             {new Date(event?.start_time).toLocaleDateString() ===
               new Date(event?.end_time).toLocaleDateString() ||
             new Date(event?.start_time).toLocaleDateString() >
               new Date(event?.end_time).toLocaleDateString()
               ? ""
-              : new Date(event?.end_time).toLocaleDateString().replaceAll("/", ".") +
-                ", "}
+              : new Date(event?.end_time)
+                  .toLocaleDateString()
+                  .replaceAll("/", ".") + ", "}
             {new Date(event?.end_time).toLocaleTimeString()}
           </p>
           <h4>
@@ -113,9 +127,14 @@ const SingleEventPage = () => {
         className="description"
         dangerouslySetInnerHTML={{
           __html:
-            event?.description?.en || event?.description?.fi || event?.description?.sv,
+            event?.description?.en ||
+            event?.description?.fi ||
+            event?.description?.sv,
         }}
       ></div>
+      <div className="map">
+        <Map latitude={place.position} longitude={place.position} />
+      </div>
     </div>
   ) : (
     <p>Loading data</p>
