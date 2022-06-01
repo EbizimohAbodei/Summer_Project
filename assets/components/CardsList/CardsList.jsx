@@ -11,7 +11,7 @@ function CardsList() {
   useEffect(() => {
     axios
       .get(
-        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=38&start=today"
+        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=30&start=today"
       )
       .then((response) => {
         setAllEventsData(response?.data);
@@ -78,9 +78,9 @@ function CardsList() {
               }
               endTime={new Date(item?.end_time).toLocaleTimeString()}
               description={
-                item.short_description.en ||
-                item.short_description.fi ||
-                item.short_description.sv
+                item.short_description?.en ||
+                item.short_description?.fi ||
+                item.short_description?.sv
               }
               eventImage={item?.images[0]?.url}
             />
