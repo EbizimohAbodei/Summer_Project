@@ -48,6 +48,7 @@ const SingleEventPage = () => {
 
   return event ? (
     <div className="eventPage">
+      {console.log(place)}
       <div className="eventInfo">
         <div className="imageContainer">
           <img src={image?.url} className="image" alt={image?.alt_text || ""} />
@@ -132,7 +133,7 @@ const SingleEventPage = () => {
         }}
       ></div>
       <div className="map">
-        <Map />
+        <Map latitude={place.position} longitude={place.position} />
       </div>
     </div>
   ) : (

@@ -2,13 +2,13 @@ import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "./Map.scss";
 
-const Map = () => {
+const Map = (props) => {
   return (
     <MapContainer
       center={[60.1699, 24.9384]}
       zoom={13}
       scrollWheelZoom={true}
-      style={{ width: "100vw", height: "100vh" }}
+      style={{ width: "50vw", height: "50vh" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
