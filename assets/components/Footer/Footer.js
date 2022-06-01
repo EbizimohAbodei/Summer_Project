@@ -4,7 +4,16 @@ import ReactDom from "react-dom/client";
 const Footer = () => {
   return (
     <footer>
-      <h2>Team EOT Summer Project</h2>
+      <div className="footerContainer">
+        <div>
+          <h2>Team EOT Summer Project</h2>
+        </div>
+        <div>
+          <h3>
+            &copy; 2022 Helsinki open API and Affiliates. All rights reserved.
+          </h3>
+        </div>
+      </div>
     </footer>
   );
 };

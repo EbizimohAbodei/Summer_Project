@@ -11,7 +11,7 @@ function CardsList() {
   useEffect(() => {
     axios
       .get(
-        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=30&start=today"
+        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=35&start=today"
       )
       .then((response) => {
         setAllEventsData(response?.data);
@@ -50,7 +50,6 @@ function CardsList() {
 
   return (
     <div className="cardsListContainer">
-      {console.log(allEventsData)}
       <div className="heroBanner">
         <HeroBanner />
       </div>
@@ -61,11 +60,7 @@ function CardsList() {
               key={item.id}
               id={item.id}
               name={item.name.en || item.name.fi || item.name.sv}
-              location={
-                item.location_extra_info?.en ||
-                item.location_extra_info?.fi ||
-                item.location_extra_info?.sv
-              }
+              locationCall={item.location["@id"]}
               startDate={new Date(item?.start_time).toLocaleDateString()}
               startTime={new Date(item?.start_time).toLocaleTimeString()}
               endDate={
@@ -78,6 +73,9 @@ function CardsList() {
               }
               endTime={new Date(item?.end_time).toLocaleTimeString()}
               description={
+                // item.description.en ||
+                // item.description.fi ||
+                // item.description.sv ||
                 item.short_description?.en ||
                 item.short_description?.fi ||
                 item.short_description?.sv
