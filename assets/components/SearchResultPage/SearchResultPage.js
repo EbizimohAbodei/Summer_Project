@@ -57,9 +57,7 @@ const SearchResultPage = () => {
           image = "http://source.unsplash.com/afW1hht0NSs";
         }
 
-        const description = event.description
-          ? event.description.fi
-          : "no description";
+        const description = event.description ? event.description.fi : "no description";
         const shortDescription = event.short_description
           ? event.short_description.en || event.short_description.fi
           : "";
@@ -82,7 +80,7 @@ const SearchResultPage = () => {
           <div key={i} className="singleEvent">
             <img style={{ height: "10rem" }} src={image} />
             <div>
-              <Link to={`/cards/${event?.id}`}>
+              <Link to={`/events/${event?.id}`}>
                 <h1>{eventName}</h1>
               </Link>
               <em>{startEndTime}</em>
@@ -94,10 +92,7 @@ const SearchResultPage = () => {
       })}
       <div>
         {meta.previous && (
-          <button
-            className="prevButton"
-            onClick={() => changePage(meta.previous)}
-          >
+          <button className="prevButton" onClick={() => changePage(meta.previous)}>
             Prev-page
           </button>
         )}
