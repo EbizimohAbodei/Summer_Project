@@ -9,7 +9,7 @@ function Card(props) {
     <div className="card">
       <img src={props.eventImage || image} />
       <div>
-        <Link target="_blank" to={`cards/${id}`} className="name">
+        <Link target="_blank" to={`events/${id}`} className="name">
           {props.name}
         </Link>
         <p className="dateTime">
