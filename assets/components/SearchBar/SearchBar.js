@@ -2,19 +2,16 @@ import React, { useState } from "react";
 import "./searchBar.scss";
 import { RiSearch2Line } from "react-icons/Ri";
 import { GrClose } from "react-icons/Gr";
-import { useNavigate, Link } from "react-router-dom";
+import { BsCalendarDateFill } from "react-icons/bs";
+import { IoCalendarNumber } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export const SearchBar = () => {
+export const SearchBar = ({ showSearch, searchToggle }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [startDate, setStartDate] = useState("today");
   const [endDate, setEndDate] = useState(null);
-  const [searchToggle, setSearchToggle] = useState(false);
   const navigate = useNavigate();
-
-  const showSearch = () => {
-    setSearchToggle(!searchToggle);
-  };
 
   const getCategories = (e) => {
     e.preventDefault();
@@ -39,27 +36,27 @@ export const SearchBar = () => {
   return (
     <div className="searchBar">
       {searchToggle && (
-        <div>
+        <div className="formContainer">
           <form onSubmit={(e) => getCategories(e)}>
-            <label htmlFor="start">Start date:</label>
-            <input
-              onChange={(e) => setStartDate(e.target.value)}
-              id="start"
-              type="date"
-            />
-            <label htmlFor="end">End date:</label>
-            <input
-              onChange={(e) => setEndDate(e.target.value)}
-              id="end"
-              type="date"
-            />
-            <input
-              type="text"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            ></input>
-            <button id="subButton" type="submit">
-              <RiSearch2Line />
-            </button>
+            <div>
+              <input
+                onChange={(e) => setStartDate(e.target.value)}
+                id="start"
+                type="date"
+              />
+              <input
+                onChange={(e) => setEndDate(e.target.value)}
+                id="end"
+                type="date"
+              />
+              <input
+                type="text"
+                onChange={(e) => setSearchTerm(e.target.value)}
+              ></input>
+              <button className="submitButton" type="submit">
+                <RiSearch2Line />
+              </button>
+            </div>
           </form>
         </div>
       )}
