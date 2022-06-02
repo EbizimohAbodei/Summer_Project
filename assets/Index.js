@@ -17,7 +17,7 @@ const Index = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<CardsList />} />
-          <Route path="cards/:id" element={<SingleEventPage />} />
+          <Route path="events/:id" element={<SingleEventPage />} />
           <Route path="search/:searchTerm" element={<SearchResultPage />} />
         </Route>
       </Routes>

@@ -10,7 +10,13 @@ body {
   font-family: "Noto Sans Display", sans-serif;
 }
 
-footer {
+.footerContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  flex-direction: column;
+  position: sticky;
+  bottom: 0;
+  align-items: center;
+  height: 65px;
+  width: 100%;
 }

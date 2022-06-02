@@ -18,29 +18,28 @@ const SingleEventPage = () => {
       .get("https://api.hel.fi/linkedevents/v1/event/" + params.id)
       .then((res) => {
         setEvent(res.data);
+
         res.data?.images[0]
           ? axios
               .get(res.data?.images[0]["@id"])
               .then((res) => {
-                console.log(res.data);
                 setImage(res.data);
               })
               .catch((err) => console.log("Something went wrong ", err))
           : setImage({
               url: "http://source.unsplash.com/afW1hht0NSs",
-              photographer_name: "Unsplash",
+              photographer_name:
+                "Unsplash Markus Winkler https://unsplash.com/@markuswinkler",
             });
         setPrice(res.data?.offers[0]);
         axios
           .get(res.data.location["@id"])
           .then((res) => {
             setPlace(res.data);
+            console.log(res.data);
           })
           .catch((err) =>
-            console.log(
-              "An error happened while looking place information: ",
-              err
-            )
+            console.log("An error happened while looking place information: ", err)
           );
       })
       .catch((err) => console.log(err));
@@ -48,7 +47,6 @@ const SingleEventPage = () => {
 
   return event ? (
     <div className="eventPage">
-      {console.log(place)}
       <div className="eventInfo">
         <div className="imageContainer">
           <img src={image?.url} className="image" alt={image?.alt_text || ""} />
@@ -61,32 +59,23 @@ const SingleEventPage = () => {
           <p>
             <small>
               <a
-                href={
-                  event?.info_url?.en ||
-                  event?.info_url?.fi ||
-                  event?.info_url?.sv
-                }
+                href={event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
                 target="_blank"
               >
-                {event?.info_url?.en ||
-                  event?.info_url?.fi ||
-                  event?.info_url?.sv}
+                {event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
               </a>
             </small>
           </p>
           <p>
-            {new Date(event?.start_time)
-              .toLocaleDateString()
-              .replaceAll("/", ".")}
-            , {new Date(event?.start_time).toLocaleTimeString()} -{" "}
+            {new Date(event?.start_time).toLocaleDateString().replaceAll("/", ".")},{" "}
+            {new Date(event?.start_time).toLocaleTimeString()} -{" "}
             {new Date(event?.start_time).toLocaleDateString() ===
               new Date(event?.end_time).toLocaleDateString() ||
             new Date(event?.start_time).toLocaleDateString() >
               new Date(event?.end_time).toLocaleDateString()
               ? ""
-              : new Date(event?.end_time)
-                  .toLocaleDateString()
-                  .replaceAll("/", ".") + ", "}
+              : new Date(event?.end_time).toLocaleDateString().replaceAll("/", ".") +
+                ", "}
             {new Date(event?.end_time).toLocaleTimeString()}
           </p>
           <h4>
@@ -127,13 +116,20 @@ const SingleEventPage = () => {
         className="description"
         dangerouslySetInnerHTML={{
           __html:
-            event?.description?.en ||
-            event?.description?.fi ||
-            event?.description?.sv,
+            event?.description?.en || event?.description?.fi || event?.description?.sv,
         }}
       ></div>
       <div className="map">
-        <Map latitude={place.position} longitude={place.position} />
+        <Map
+          longitude={place?.position?.coordinates[1]}
+          latitude={place?.position?.coordinates[0]}
+          name={place?.name}
+          url={place?.info_url}
+          street_address={place?.street_address}
+          postal_code={place?.postal_code}
+          telephone={place?.telephone}
+          city={place?.address_locality}
+        />
       </div>
     </div>
   ) : (
