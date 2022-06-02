@@ -106,7 +106,9 @@ const SingleEventPage = () => {
               __html:
                 event?.short_description?.en ||
                 event?.short_description?.fi ||
-                event?.short_description?.sv,
+                event?.short_description?.sv ||
+                event?.short_description?.ru ||
+                "No description available",
             }}
           ></div>
           <p></p>
@@ -116,7 +118,15 @@ const SingleEventPage = () => {
         className="description"
         dangerouslySetInnerHTML={{
           __html:
-            event?.description?.en || event?.description?.fi || event?.description?.sv,
+            event?.description?.en ||
+            event?.description?.fi ||
+            event?.description?.sv ||
+            event?.description?.ru ||
+            event?.short_description?.en ||
+            event?.short_description?.fi ||
+            event?.short_description?.sv ||
+            event?.short_description?.ru ||
+            "No description available",
         }}
       ></div>
       <div className="map">

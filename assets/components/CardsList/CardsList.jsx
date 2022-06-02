@@ -10,9 +10,7 @@ function CardsList() {
 
   useEffect(() => {
     axios
-      .get(
-        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=35&start=today"
-      )
+      .get("http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=35&start=today")
       .then((response) => {
         setAllEventsData(response?.data);
         setMeta(response.data.meta);
@@ -50,6 +48,7 @@ function CardsList() {
 
   return (
     <div className="cardsListContainer">
+      {console.log(allEventsData)}
       <div className="heroBanner">
         <HeroBanner />
       </div>
@@ -59,7 +58,7 @@ function CardsList() {
             <Card
               key={item.id}
               id={item.id}
-              name={item.name.en || item.name.fi || item.name.sv}
+              name={item.name.en || item.name.fi || item.name.sv || item.name.ru}
               locationCall={item.location["@id"]}
               startDate={new Date(item?.start_time).toLocaleDateString()}
               startTime={new Date(item?.start_time).toLocaleTimeString()}
@@ -78,7 +77,8 @@ function CardsList() {
                 // item.description.sv ||
                 item.short_description?.en ||
                 item.short_description?.fi ||
-                item.short_description?.sv
+                item.short_description?.sv ||
+                item.short_description?.ru
               }
               eventImage={item?.images[0]?.url}
             />
