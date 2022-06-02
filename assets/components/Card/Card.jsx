@@ -40,6 +40,7 @@ function Card(props) {
             locationData.address_locality?.sv}
         </p>
         <p className="description">{props.description}</p>
+        <div>{props.tags}</div>
       </div>
     </div>
   );
