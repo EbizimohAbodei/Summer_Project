@@ -39,10 +39,7 @@ const SingleEventPage = () => {
             console.log(res.data);
           })
           .catch((err) =>
-            console.log(
-              "An error happened while looking place information: ",
-              err
-            )
+            console.log("An error happened while looking place information: ", err)
           );
       })
       .catch((err) => console.log(err));
@@ -62,32 +59,23 @@ const SingleEventPage = () => {
           <p>
             <small>
               <a
-                href={
-                  event?.info_url?.en ||
-                  event?.info_url?.fi ||
-                  event?.info_url?.sv
-                }
+                href={event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
                 target="_blank"
               >
-                {event?.info_url?.en ||
-                  event?.info_url?.fi ||
-                  event?.info_url?.sv}
+                {event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
               </a>
             </small>
           </p>
           <p className="date">
-            {new Date(event?.start_time)
-              .toLocaleDateString()
-              .replaceAll("/", ".")}
-            , {new Date(event?.start_time).toLocaleTimeString()} -{" "}
+            {new Date(event?.start_time).toLocaleDateString().replaceAll("/", ".")},{" "}
+            {new Date(event?.start_time).toLocaleTimeString()} -{" "}
             {new Date(event?.start_time).toLocaleDateString() ===
               new Date(event?.end_time).toLocaleDateString() ||
             new Date(event?.start_time).toLocaleDateString() >
               new Date(event?.end_time).toLocaleDateString()
               ? ""
-              : new Date(event?.end_time)
-                  .toLocaleDateString()
-                  .replaceAll("/", ".") + ", "}
+              : new Date(event?.end_time).toLocaleDateString().replaceAll("/", ".") +
+                ", "}
             {new Date(event?.end_time).toLocaleTimeString()}
           </p>
           <h4 className="price">
