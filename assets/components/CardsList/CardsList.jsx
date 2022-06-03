@@ -27,6 +27,11 @@ function CardsList() {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        axios
+          .get("http://127.0.0.1:8000/spa/getlikes")
+          .then((res) => console.log(res.data));
       });
   }, []);
 
@@ -60,14 +65,13 @@ function CardsList() {
     window.scrollTo(0, 300);
   };
 
-  const handleLike = (e) => {
-    e.preventDefault();
-    console.log(e.target.dataset.id);
+  const handleLike = (id, endTime) => {
     const { likeCount, interestCount } = postData;
     let postForm = new FormData();
     postForm.append("likeCount", likeCount + 1);
     postForm.append("interestCount", interestCount + 1);
-    postForm.append("eventId", e.target.dataset.id);
+    postForm.append("eventId", id);
+    postForm.append("endDate", endTime);
     axios
       .post("http://127.0.0.1:8000/spa/addlikes", postForm)
       .then((res) => console.log("form posted", res))
@@ -82,6 +86,7 @@ function CardsList() {
       {loading && <Loading />}
       <div className="cardsList">
         {allEventsData?.data?.map((item) => {
+          console.log(item);
           return (
             <Card
               key={item.id}
@@ -112,9 +117,10 @@ function CardsList() {
               }
               eventImage={item?.images[0]?.url}
             >
-              {" "}
-              <div onClick={(e) => handleLike(e)}>
-                <BsHeartFill data-id={item.id} />
+              <div>
+                <BsHeartFill
+                  onClick={() => handleLike(item.id, item.end_time)}
+                />
               </div>
             </Card>
           );
