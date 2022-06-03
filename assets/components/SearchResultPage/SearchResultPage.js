@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../Card/Card";
+import Loading from "../Loading/Loading";
 import "./SearchResultPage.scss";
 
 const SearchResultPage = () => {
@@ -66,7 +67,11 @@ const SearchResultPage = () => {
   };
 
   if (loading) {
-    return <p>loading...</p>;
+    return (
+      <p>
+        <Loading />
+      </p>
+    );
   }
 
   if (events.length === 0 || tags.length === 0) {
@@ -76,7 +81,7 @@ const SearchResultPage = () => {
       </div>
     );
   }
-  // console.log(tags[1]);
+
   return (
     <div className="eventContainer">
       {events.map((event, i) => {
@@ -97,22 +102,13 @@ const SearchResultPage = () => {
             </li>
           );
         });
+
         let image;
         try {
           image = event.images[0].url;
         } catch {
           image = "http://source.unsplash.com/afW1hht0NSs";
         }
-
-        const description = event.description
-          ? event.description.fi
-          : "no description";
-        const shortDescription = event.short_description
-          ? event.short_description.en || event.short_description.fi
-          : "";
-        let eventName = event.name
-          ? event.name.en || event.name.fi || event.name.sv
-          : "No name";
 
         return (
           <Card
