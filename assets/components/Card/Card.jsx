@@ -2,7 +2,18 @@ import React from "react";
 import "./card.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Loading from "../Loading/Loading";
+import { Link, useNavigate } from "react-router-dom";
+
+const createAddress = (streetaddress, postalcode, localaddress) => {
+  const address = !streetaddress ? "" : streetaddress.fi + ", ";
+  const postal_code = !postalcode ? "" : postalcode + ", ";
+  const local_address = !localaddress ? "" : localaddress.fi + ", ";
+  const street_address = `${address}${postal_code}${local_address}`;
+
+  return street_address ? street_address : "no address";
+};
 
 function Card(props) {
   const [locationData, setLocationData] = useState([]);
@@ -26,24 +37,19 @@ function Card(props) {
   const id = props.id.replace(/:/g, "%3A");
 
   if (loading) {
-    return <p>loading ...</p>;
+    return (
+      <p>
+        <Loading />
+      </p>
+    );
   }
-
-  const address = !locationData.street_address
-    ? ""
-    : locationData.street_address.fi + ", ";
-
-  const postal_code = !locationData.postal_code ? "" : locationData.postal_code + ", ";
-
-  const local_address = !locationData.address_locality
-    ? ""
-    : locationData.address_locality.fi + ", ";
-
-  const street_address = `${address}${postal_code}${local_address}`;
 
   return (
     <div className="card">
-      <img src={props.eventImage || image} onClick={() => navigate(`/events/${id}`)} />
+      <img
+        src={props.eventImage || image}
+        onClick={() => navigate(`/events/${id}`)}
+      />
 
       <div>
         <Link to={`/events/${id}`} className="name">
@@ -52,7 +58,13 @@ function Card(props) {
         <p className="dateTime">
           {props.startDate} {props.startTime} - {props.endDate} {props.endTime}
         </p>
-        <p className="location">{street_address ? street_address : "no address"}</p>
+        <p className="location">
+          {createAddress(
+            locationData.street_address,
+            locationData.postal_code,
+            locationData.address_locality
+          )}
+        </p>
         <p className="description">{props.description}</p>
         {props.children}
       </div>

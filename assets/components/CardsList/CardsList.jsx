@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import "./cardslist.scss";
 import { BsHeartFill } from "react-icons/bs";
 import Loading from "../Loading/Loading";
-const axios = require("axios").default;
+import axios from "axios";
 import HeroBanner from "../HeroBanner/HeroBanner";
 
 function CardsList() {
