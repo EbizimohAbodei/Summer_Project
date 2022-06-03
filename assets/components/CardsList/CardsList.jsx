@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import "./cardslist.scss";
 import { BsHeartFill } from "react-icons/bs";
+import Loading from "../Loading/Loading";
 
 const axios = require("axios").default;
 import HeroBanner from "../HeroBanner/HeroBanner";
@@ -13,6 +14,7 @@ function CardsList() {
     likeCount: 0,
     interestCount: 0,
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -22,6 +24,7 @@ function CardsList() {
       .then((response) => {
         setAllEventsData(response?.data);
         setMeta(response.data.meta);
+        setLoading(!loading);
       })
       .catch((error) => {
         console.log(error);
@@ -29,11 +32,13 @@ function CardsList() {
   }, []);
 
   const prevPage = () => {
+    setLoading(!loading);
     axios
       .get(`${meta.next}`)
       .then((res) => {
         setAllEventsData(res?.data);
         setMeta(res?.data?.meta);
+        setLoading(!loading);
       })
       .catch((error) => {
         return error;
@@ -42,11 +47,13 @@ function CardsList() {
   };
 
   const nextPage = () => {
+    setLoading(!loading);
     axios
       .get(`${meta.previous}`)
       .then((res) => {
         setAllEventsData(res?.data);
         setMeta(res?.data?.meta);
+        setLoading(!loading);
       })
       .catch((error) => {
         return error;
@@ -70,10 +77,10 @@ function CardsList() {
 
   return (
     <div className="cardsListContainer">
-      {console.log(allEventsData)}
       <div className="heroBanner">
         <HeroBanner />
       </div>
+      {loading && <Loading />}
       <div className="cardsList">
         {allEventsData?.data?.map((item) => {
           return (

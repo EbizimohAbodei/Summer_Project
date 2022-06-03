@@ -1,13 +1,13 @@
 import React from "react";
-import classes from "./loading.module.css";
+import classes from "./loading.scss";
 
 const Loading = () => {
   return (
-    <div className={classes.loaderContainer}>
-      <div className={classes.loader}>
-        <div className={classes.circle}></div>
-        <div className={classes.circle}></div>
-        <div className={classes.circle}></div>
+    <div className="loaderContainer">
+      <div className="loader">
+        <div className="circle"></div>
+        <div className="circle"></div>
+        <div className="circle"></div>
         <span>Loading...</span>
       </div>
     </div>
