@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { GrActions } from "react-icons/gr";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { BsHeartFill } from "react-icons/bs";
+import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../Card/Card";
 import "./SearchResultPage.scss";
 
@@ -11,6 +11,10 @@ const SearchResultPage = () => {
   const [meta, setMeta] = useState(searchResult.meta);
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [postData, setPostData] = useState({
+    likeCount: 0,
+    interestCount: 0,
+  });
   const navigate = useNavigate();
 
   const getTags = (array) => {
@@ -75,6 +79,21 @@ const SearchResultPage = () => {
     );
   }
 
+  const handleLike = (e) => {
+    e.preventDefault();
+    console.log(e.target.dataset.id);
+    const { likeCount, interestCount } = postData;
+    let postForm = new FormData();
+    postForm.append("likeCount", likeCount + 1);
+    postForm.append("interestCount", interestCount + 1);
+    postForm.append("eventId", e.target.dataset.id);
+    axios
+      .post("http://127.0.0.1:8000/spa/addlikes", postForm)
+      .then((res) => console.log("form posted", res))
+      .catch((err) => console.log("error occurred: ", err));
+    setTest("");
+  };
+
   return (
     <div className="eventContainer">
       {events.map((event, i) => {
@@ -95,7 +114,7 @@ const SearchResultPage = () => {
             </li>
           );
         });
-
+        console.log(event.id);
         let image;
         try {
           image = event.images[0].url;
@@ -139,16 +158,17 @@ const SearchResultPage = () => {
               event.short_description?.sv ||
               event.short_description?.ru
             }
-            tags={<ul>{singleEventTags}</ul>}
-          />
+          >
+            <ul>{singleEventTags}</ul>
+            <div onClick={(e) => handleLike(e)}>
+              <BsHeartFill data-id={event.id} />
+            </div>
+          </Card>
         );
       })}
       <div>
         {meta.previous && (
-          <button
-            className="prevButton"
-            onClick={() => changePage(meta.previous)}
-          >
+          <button className="prevButton" onClick={handleLike}>
             Prev-page
           </button>
         )}
