@@ -2,11 +2,12 @@ import React from "react";
 import "./card.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function Card(props) {
   const [locationData, setLocationData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const image = "https://source.unsplash.com/250x200/?event";
 
@@ -32,9 +33,7 @@ function Card(props) {
     ? ""
     : locationData.street_address.fi + ", ";
 
-  const postal_code = !locationData.postal_code
-    ? ""
-    : locationData.postal_code + ", ";
+  const postal_code = !locationData.postal_code ? "" : locationData.postal_code + ", ";
 
   const local_address = !locationData.address_locality
     ? ""
@@ -44,7 +43,8 @@ function Card(props) {
 
   return (
     <div className="card">
-      <img src={props.eventImage || image} />
+      <img src={props.eventImage || image} onClick={() => navigate(`/events/${id}`)} />
+
       <div>
         <Link to={`/events/${id}`} className="name">
           {props.name}
@@ -52,9 +52,7 @@ function Card(props) {
         <p className="dateTime">
           {props.startDate} {props.startTime} - {props.endDate} {props.endTime}
         </p>
-        <p className="location">
-          {street_address ? street_address : "no address"}
-        </p>
+        <p className="location">{street_address ? street_address : "no address"}</p>
         <p className="description">{props.description}</p>
         {props.children}
       </div>
