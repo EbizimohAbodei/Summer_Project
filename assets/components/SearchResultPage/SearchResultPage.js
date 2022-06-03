@@ -159,9 +159,11 @@ const SearchResultPage = () => {
               event.short_description?.ru
             }
           >
-            <ul>{singleEventTags}</ul>
-            <div onClick={(e) => handleLike(e)}>
-              <BsHeartFill data-id={event.id} />
+            <div>
+              <ul>{singleEventTags}</ul>
+              <div onClick={(e) => handleLike(e)}>
+                <BsHeartFill data-id={event.id} />
+              </div>
             </div>
           </Card>
         );
