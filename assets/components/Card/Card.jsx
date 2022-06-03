@@ -2,6 +2,7 @@ import React from "react";
 import "./card.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "../Loading/Loading";
 import { Link, useNavigate } from "react-router-dom";
 
 function Card(props) {
@@ -26,7 +27,7 @@ function Card(props) {
   const id = props.id.replace(/:/g, "%3A");
 
   if (loading) {
-    return <p>loading ...</p>;
+    return <Loading />;
   }
 
   const address = !locationData.street_address
