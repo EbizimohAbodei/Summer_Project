@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import { Link, useNavigate } from "react-router-dom";
 
 const createAddress = (streetaddress, postalcode, localaddress) => {
   const address = !streetaddress ? "" : streetaddress.fi + ", ";
@@ -17,6 +18,7 @@ const createAddress = (streetaddress, postalcode, localaddress) => {
 function Card(props) {
   const [locationData, setLocationData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const image = "https://source.unsplash.com/250x200/?event";
 
@@ -44,7 +46,11 @@ function Card(props) {
 
   return (
     <div className="card">
-      <img src={props.eventImage || image} />
+      <img
+        src={props.eventImage || image}
+        onClick={() => navigate(`/events/${id}`)}
+      />
+
       <div>
         <Link to={`/events/${id}`} className="name">
           {props.name}
