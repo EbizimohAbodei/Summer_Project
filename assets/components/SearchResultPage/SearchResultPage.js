@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BsHeartFill } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../Card/Card";
 import "./SearchResultPage.scss";
@@ -11,15 +10,14 @@ const SearchResultPage = () => {
   const [meta, setMeta] = useState(searchResult.meta);
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [postData, setPostData] = useState({
-    likeCount: 0,
-    interestCount: 0,
-  });
   const navigate = useNavigate();
 
   const getTags = (array) => {
     const getTags = array.map((tag, i) => {
       return tag.keywords.map((singleEvent) => {
+        if (!singleEvent["@id"]) {
+          return;
+        }
         return axios.get(singleEvent["@id"]);
       });
     });
@@ -79,21 +77,6 @@ const SearchResultPage = () => {
     );
   }
 
-  const handleLike = (e) => {
-    e.preventDefault();
-    console.log(e.target.dataset.id);
-    const { likeCount, interestCount } = postData;
-    let postForm = new FormData();
-    postForm.append("likeCount", likeCount + 1);
-    postForm.append("interestCount", interestCount + 1);
-    postForm.append("eventId", e.target.dataset.id);
-    axios
-      .post("http://127.0.0.1:8000/spa/addlikes", postForm)
-      .then((res) => console.log("form posted", res))
-      .catch((err) => console.log("error occurred: ", err));
-    setTest("");
-  };
-
   return (
     <div className="eventContainer">
       {events.map((event, i) => {
@@ -114,7 +97,6 @@ const SearchResultPage = () => {
             </li>
           );
         });
-        console.log(event.id);
         let image;
         try {
           image = event.images[0].url;
@@ -132,6 +114,8 @@ const SearchResultPage = () => {
           ? event.name.en || event.name.fi || event.name.sv
           : "No name";
 
+        console.log(event?.location["@id"]);
+
         return (
           <Card
             eventImage={image}
@@ -140,7 +124,7 @@ const SearchResultPage = () => {
             name={
               event.name.en || event.name.fi || event.name.sv || event.name.ru
             }
-            locationCall={event.location["@id"]}
+            locationCall={event.location ? event.location["@id"] : ""}
             startDate={new Date(event?.start_time).toLocaleDateString()}
             startTime={new Date(event?.start_time).toLocaleTimeString()}
             endDate={
@@ -161,9 +145,6 @@ const SearchResultPage = () => {
           >
             <div>
               <ul>{singleEventTags}</ul>
-              <div onClick={(e) => handleLike(e)}>
-                <BsHeartFill data-id={event.id} />
-              </div>
             </div>
           </Card>
         );
