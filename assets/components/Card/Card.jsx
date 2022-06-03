@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Card(props) {
   const [locationData, setLocationData] = useState([]);
 
-  const image = "https://source.unsplash.com/300x300/?event";
+  const image = "https://source.unsplash.com/250x200/?event";
 
   useEffect(() => {
     // declare the data fetching function

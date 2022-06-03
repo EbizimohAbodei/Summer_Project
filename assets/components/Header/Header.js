@@ -28,30 +28,28 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <header>
-        <Link to="/">
-          <h1>Helsinki Events</h1>
-        </Link>
-        {!searchToggle && (
-          <Categories
-            showCategory={showCategory}
-            showCategories={showCategories}
-          />
-        )}
-        <SearchBar
-          showSearch={() => setSearchToggle(!searchToggle)}
-          searchToggle={searchToggle}
+    <header>
+      <Link to="/">
+        <h1>Helsinki Events</h1>
+      </Link>
+      {!searchToggle && (
+        <Categories
+          showCategory={showCategory}
+          showCategories={showCategories}
         />
-        {showCategories.show && (
-          <Overlay
-            toggleCategories={() =>
-              setShowCategories({ show: !showCategories.show, category: null })
-            }
-          />
-        )}
-      </header>
-    </div>
+      )}
+      <SearchBar
+        showSearch={() => setSearchToggle(!searchToggle)}
+        searchToggle={searchToggle}
+      />
+      {showCategories.show && (
+        <Overlay
+          toggleCategories={() =>
+            setShowCategories({ show: !showCategories.show, category: null })
+          }
+        />
+      )}
+    </header>
   );
 };
 

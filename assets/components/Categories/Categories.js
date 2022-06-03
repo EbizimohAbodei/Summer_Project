@@ -65,11 +65,21 @@ export const Categories = ({ showCategory, showCategories }) => {
   return (
     <nav role="navigation" className="categories">
       <ul className="broadCategories">
-        <li onClick={() => showCategory("activities")}>Activities</li>
-        <li onClick={() => showCategory("arts")}>Arts</li>
-        <li onClick={() => showCategory("groupSegment")}>Groups</li>
-        <li onClick={() => showCategory("seeAndDo")}>See and Do</li>
-        <li onClick={() => showCategory("workAndStudy")}>Work and Study</li>
+        <li onClick={() => showCategory("activities")}>
+          Activities <span className="arrow">&#8964;</span>
+        </li>
+        <li onClick={() => showCategory("arts")}>
+          Arts <span className="arrow">&#8964;</span>
+        </li>
+        <li onClick={() => showCategory("groupSegment")}>
+          Groups<span className="arrow">&#8964;</span>
+        </li>
+        <li onClick={() => showCategory("seeAndDo")}>
+          See and Do<span className="arrow">&#8964;</span>
+        </li>
+        <li onClick={() => showCategory("workAndStudy")}>
+          Work and Study<span className="arrow">&#8964;</span>
+        </li>
         {showCategories.show && (
           <CategoryList
             category={categories.filter(
