@@ -5,6 +5,7 @@ import Layout from "./Pages/Layout";
 import CardsList from "./components/CardsList/CardsList.jsx";
 import SingleEventPage from "./components/SingleEventPage/SingleEventPage";
 import SearchResultPage from "./components/SearchResultPage/SearchResultPage";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 // const RouterWrapper = (props) => {
 //   const params = useParams();
@@ -14,6 +15,7 @@ import SearchResultPage from "./components/SearchResultPage/SearchResultPage";
 const Index = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<CardsList />} />
