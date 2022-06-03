@@ -41,7 +41,7 @@ function Card(props) {
             locationData.address_locality?.sv}
         </p>
         <p className="description">{props.description}</p>
-        {props.children}
+        <div className="like">{props.children}</div>
       </div>
     </div>
   );
