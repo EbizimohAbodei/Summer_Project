@@ -6,20 +6,41 @@ import { Link } from "react-router-dom";
 
 function Card(props) {
   const [locationData, setLocationData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const image = "https://source.unsplash.com/250x200/?event";
 
   useEffect(() => {
     // declare the data fetching function
+    setLoading(true);
     axios
       .get(`${props.locationCall}`)
       .then((resp) => {
         setLocationData(resp.data);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
   const id = props.id.replace(/:/g, "%3A");
+
+  if (loading) {
+    return <p>loading ...</p>;
+  }
+
+  const address = !locationData.street_address
+    ? ""
+    : locationData.street_address.fi + ", ";
+
+  const postal_code = !locationData.postal_code
+    ? ""
+    : locationData.postal_code + ", ";
+
+  const local_address = !locationData.address_locality
+    ? ""
+    : locationData.address_locality.fi + ", ";
+
+  const street_address = `${address}${postal_code}${local_address}`;
 
   return (
     <div className="card">
@@ -32,13 +53,7 @@ function Card(props) {
           {props.startDate} {props.startTime} - {props.endDate} {props.endTime}
         </p>
         <p className="location">
-          {locationData.length === 0
-            ? ""
-            : locationData.street_address?.fi ||
-              locationData.street_address?.sv}
-          , {locationData.postal_code},{" "}
-          {locationData.address_locality?.fi ||
-            locationData.address_locality?.sv}
+          {street_address ? street_address : "no address"}
         </p>
         <p className="description">{props.description}</p>
         <div className="like">{props.children}</div>
