@@ -2,8 +2,16 @@
   display: flex;
   align-items: center;
   margin-bottom: 50px;
+  min-width: 45%;
   width: 45%;
   height: 200px;
+  background-color: #fefefe;
+  // box-shadow: 2px 3px 15px 1px rgba(0, 0, 0, 0.75);
+
+  &:nth-of-type(2n) {
+    margin-left: 10%;
+  }
+
   img {
     width: 250px;
     height: 200px;

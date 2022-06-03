@@ -8,7 +8,7 @@ const Map = (props) => {
       center={[props.longitude, props.latitude]}
       zoom={16}
       scrollWheelZoom={true}
-      style={{ width: "50vw", height: "50vh" }}
+      style={{ width: "90%", height: "50vh", margin: "auto" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -16,12 +16,18 @@ const Map = (props) => {
       />
       <Marker position={[props.longitude, props.latitude]}>
         <Popup>
-          <a href={props?.url?.en || props?.url?.fi || props?.url?.sv} target="_blank">
+          <a
+            href={props?.url?.en || props?.url?.fi || props?.url?.sv}
+            target="_blank"
+          >
             <h3>{props?.name?.en || props?.name?.fi || props?.name?.sv}</h3>
           </a>
           <br />
           <small>
-            Tel: {props?.telephone?.en || props?.telephone?.fi || props?.telephone?.sv}
+            Tel:{" "}
+            {props?.telephone?.en ||
+              props?.telephone?.fi ||
+              props?.telephone?.sv}
           </small>
           <p>
             <br />
@@ -29,7 +35,8 @@ const Map = (props) => {
               props.street_address.fi ||
               props.street_address.sv}
             <br />
-            {props.postal_code} {props.city.en || props.city.fi || props.city.sv}
+            {props.postal_code}{" "}
+            {props.city.en || props.city.fi || props.city.sv}
           </p>
         </Popup>
       </Marker>

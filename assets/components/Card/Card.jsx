@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Card(props) {
   const [locationData, setLocationData] = useState([]);
 
-  const image = "https://source.unsplash.com/300x300/?event";
+  const image = "https://source.unsplash.com/250x200/?event";
 
   useEffect(() => {
     // declare the data fetching function
@@ -40,7 +40,7 @@ function Card(props) {
             locationData.address_locality?.sv}
         </p>
         <p className="description">{props.description}</p>
-        <div>{props.tags}</div>
+        {/* <div>{props.tags}</div> */}
       </div>
     </div>
   );

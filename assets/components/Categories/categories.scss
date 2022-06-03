@@ -14,24 +14,29 @@
 }
 
 @mixin hoover {
-  text-decoration: underline;
-  background-color: rgb(190, 210, 210);
+  background-color: #d2e6f0;
 }
 
 li {
-  background-color: rgb(169, 209, 208);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 0.5rem;
   margin: 0.5rem;
   cursor: pointer;
   &:hover {
     @include hoover;
   }
+
+  .arrow {
+    font-size: 1.6em;
+    padding-left: 6px;
+    margin-bottom: 12px;
+  }
 }
 
 .categories {
   z-index: 100;
-  width: 35vw;
+  width: 50%;
 
   .broadCategories {
     display: flex;
@@ -44,7 +49,7 @@ li {
     position: absolute;
     top: 64px;
     background-color: #fff;
-    width: 35vw;
+    width: 50%;
     @include slide-down(0.5s);
     li {
       display: flex;
