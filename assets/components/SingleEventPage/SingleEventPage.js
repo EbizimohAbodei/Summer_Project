@@ -39,7 +39,10 @@ const SingleEventPage = () => {
             console.log(res.data);
           })
           .catch((err) =>
-            console.log("An error happened while looking place information: ", err)
+            console.log(
+              "An error happened while looking place information: ",
+              err
+            )
           );
       })
       .catch((err) => console.log(err));
@@ -59,32 +62,43 @@ const SingleEventPage = () => {
           <p>
             <small>
               <a
-                href={event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+                href={
+                  event?.info_url?.en ||
+                  event?.info_url?.fi ||
+                  event?.info_url?.sv
+                }
                 target="_blank"
               >
-                {event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+                {event?.info_url?.en ||
+                  event?.info_url?.fi ||
+                  event?.info_url?.sv}
               </a>
             </small>
           </p>
-          <p>
-            {new Date(event?.start_time).toLocaleDateString().replaceAll("/", ".")},{" "}
-            {new Date(event?.start_time).toLocaleTimeString()} -{" "}
+          <p className="date">
+            {new Date(event?.start_time)
+              .toLocaleDateString()
+              .replaceAll("/", ".")}
+            , {new Date(event?.start_time).toLocaleTimeString()} -{" "}
             {new Date(event?.start_time).toLocaleDateString() ===
               new Date(event?.end_time).toLocaleDateString() ||
             new Date(event?.start_time).toLocaleDateString() >
               new Date(event?.end_time).toLocaleDateString()
               ? ""
-              : new Date(event?.end_time).toLocaleDateString().replaceAll("/", ".") +
-                ", "}
+              : new Date(event?.end_time)
+                  .toLocaleDateString()
+                  .replaceAll("/", ".") + ", "}
             {new Date(event?.end_time).toLocaleTimeString()}
           </p>
-          <h4>
+          <h4 className="price">
             Tickets:{" "}
             {price.is_free
               ? "Free"
               : price.price?.en || price.price?.fi || price.price?.sv}
           </h4>
-          <p>{place?.name?.en || place?.name?.fi || place?.name?.sv}</p>
+          <p className="location">
+            {place?.name?.en || place?.name?.fi || place?.name?.sv}
+          </p>
           <p>
             {event?.location_extra_info?.en ||
               event?.location_extra_info?.fi ||
@@ -102,6 +116,7 @@ const SingleEventPage = () => {
               place?.address_locality?.sv}
           </p>
           <div
+            className="short_description"
             dangerouslySetInnerHTML={{
               __html:
                 event?.short_description?.en ||

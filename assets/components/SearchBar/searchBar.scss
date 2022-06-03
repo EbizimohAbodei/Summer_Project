@@ -40,10 +40,13 @@ $inputbgfocus: rgb(190, 210, 210);
     display: inline;
 
     input[type="text"] {
-      border-radius: 2px;
+      border-radius: 5px;
       border: 1px solid black;
       padding: 0.3rem;
+      padding-right: 30px;
       width: 20vw;
+      height: 21px;
+      margin-left: 15px;
       &:focus {
         outline: none !important;
         border: 2px solid rgb(76, 210, 210);
@@ -54,36 +57,36 @@ $inputbgfocus: rgb(190, 210, 210);
       border-radius: 2px;
       margin: 0.5rem;
       padding: 0.4rem;
-      background-color: $inputbg;
+      background-color: #fefefe;
       border: none;
-      outline: none;
+      outline: 1px solid black;
       &:focus {
         @include foocus;
       }
     }
     .submitButton {
-      transform: translateY(1px);
-      margin: 0.1rem;
+      transform: scale(1.2) translate(-25px, 3px);
+
+      &:hover {
+        transform: scale(1.3) translate(-25px, 3px);
+      }
     }
   }
   button {
     border-radius: 2px;
     display: inline;
     color: black;
-    background-color: $inputbg;
     border: none;
     outline: none;
     font-size: 1rem;
-    padding: 0.4;
     height: 27px;
     width: 26px;
+    background-color: #fefefe00;
+    transform: scale(1.2);
 
     &:hover {
       @include hoover;
+      transform: scale(1.3);
     }
-  }
-
-  .searchButton {
-    margin: 0.5rem;
   }
 }

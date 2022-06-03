@@ -4,34 +4,117 @@
   .eventInfo {
     display: flex;
     width: 100%;
+    // min-height: 25vh;
+    background-color: #d2e6f0;
+    margin-bottom: -2px;
   }
 
   .description {
     word-wrap: break-word;
     margin: 5%;
     text-align: justify;
+    font-size: 18px;
   }
 
   .imageContainer {
-    width: 50%;
+    width: 55%;
+    height: 100%;
+    position: relative;
 
     .image {
       width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: left;
     }
+
+    p {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &::after {
+      content: "";
+      height: 100%;
+      width: 20px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-image: url("./mask.svg");
+      z-index: 10;
+    }
   }
 }
+
 .map {
-  width: 50vw;
+  width: 100%;
   height: 50vh;
+  margin-bottom: 5%;
 }
+
 .eventData {
-  margin-top: 5%;
-  margin-left: 3rem;
-  margin-right: 5%;
+  width: 45%;
+  padding: 35px 5%;
+  overflow: hidden;
+  position: relative;
 
   h2 {
     font-size: xx-large;
+  }
+  .date {
+    position: relative;
+    padding-left: 25px;
+    margin-top: 1em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      background-image: url("./calendar.svg");
+    }
+  }
+
+  .price {
+    position: relative;
+    padding-left: 25px;
+    margin-top: 1em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      background-image: url("./euro.svg");
+    }
+  }
+
+  .location {
+    position: relative;
+    padding-left: 25px;
+    margin-top: 1em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      background-image: url("./location.svg");
+    }
+  }
+
+  .short_description {
+    margin-top: 1em;
+  }
+
+  p {
+    padding-left: 25px;
   }
 }
