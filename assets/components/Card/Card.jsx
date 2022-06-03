@@ -24,7 +24,7 @@ function Card(props) {
     <div className="card">
       <img src={props.eventImage || image} />
       <div>
-        <Link to={`events/${id}`} className="name">
+        <Link to={`/events/${id}`} className="name">
           {props.name}
         </Link>
         <p className="dateTime">
@@ -40,7 +40,7 @@ function Card(props) {
             locationData.address_locality?.sv}
         </p>
         <p className="description">{props.description}</p>
-        <div>{props.children}</div>
+        {props.children}
       </div>
     </div>
   );
