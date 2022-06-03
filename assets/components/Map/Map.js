@@ -35,7 +35,11 @@ const Map = (props) => {
       </Marker>
     </MapContainer>
   ) : (
-    <p>Loading map</p>
+    <div className="nomap">
+      <p>No address provided.</p>
+      <p>Either the event is remote or no address is provided be the event organizer.</p>
+      <p>Please contact the event organizer for further information.</p>
+    </div>
   );
 };
 
