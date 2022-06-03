@@ -67,14 +67,10 @@ const SearchResultPage = () => {
   };
 
   if (loading) {
-    return (
-      <p>
-        <Loading />
-      </p>
-    );
+    return <Loading />;
   }
 
-  if (events.length === 0 || tags.length === 0) {
+  if (events.length === 0) {
     return (
       <div>
         <p>no results</p>
@@ -137,15 +133,16 @@ const SearchResultPage = () => {
               event.short_description?.ru
             }
           >
-            <div>
-              <ul>{singleEventTags}</ul>
-            </div>
+            {<ul>{singleEventTags}</ul>}
           </Card>
         );
       })}
       <div>
         {meta.previous && (
-          <button className="prevButton" onClick={handleLike}>
+          <button
+            className="prevButton"
+            onClick={() => handleLike(meta.previous)}
+          >
             Prev-page
           </button>
         )}

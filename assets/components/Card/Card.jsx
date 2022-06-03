@@ -2,7 +2,6 @@ import React from "react";
 import "./card.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -37,11 +36,7 @@ function Card(props) {
   const id = props.id.replace(/:/g, "%3A");
 
   if (loading) {
-    return (
-      <p>
-        <Loading />
-      </p>
-    );
+    return <Loading />;
   }
 
   return (
