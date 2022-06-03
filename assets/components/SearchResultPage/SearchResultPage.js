@@ -72,11 +72,11 @@ const SearchResultPage = () => {
   if (events.length === 0 || tags.length === 0) {
     return (
       <div>
-        <p>No results</p>
+        <p>no results</p>
       </div>
     );
   }
-
+  // console.log(tags[1]);
   return (
     <div className="eventContainer">
       {events.map((event, i) => {
@@ -113,8 +113,6 @@ const SearchResultPage = () => {
         let eventName = event.name
           ? event.name.en || event.name.fi || event.name.sv
           : "No name";
-
-        console.log(event?.location["@id"]);
 
         return (
           <Card

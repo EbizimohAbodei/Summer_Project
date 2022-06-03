@@ -66,7 +66,6 @@ function CardsList() {
       .post("http://127.0.0.1:8000/spa/addlikes", postForm)
       .then((res) => console.log("form posted", res))
       .catch((err) => console.log("error occurred: ", err));
-    setTest("");
   };
 
   return (
