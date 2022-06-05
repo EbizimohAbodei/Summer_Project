@@ -47,7 +47,7 @@ function Card(props) {
       />
 
       <div>
-        <Link to={`/events/${id}`} className="name">
+        <Link onClick={props.addInterest} className="name">
           {props.name}
         </Link>
         <p className="dateTime">
