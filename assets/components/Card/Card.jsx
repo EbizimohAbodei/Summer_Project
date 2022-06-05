@@ -47,9 +47,9 @@ function Card(props) {
       />
 
       <div>
-        <Link onClick={props.addInterest} className="name">
+        <h1 onClick={props.addInterest} className="name">
           {props.name}
-        </Link>
+        </h1>
         <p className="dateTime">
           {props.startDate} {props.startTime} - {props.endDate} {props.endTime}
         </p>
