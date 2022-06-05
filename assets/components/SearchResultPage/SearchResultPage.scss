@@ -34,5 +34,13 @@ a {
         @include hoover;
       }
     }
+
+    .tag {
+      display: inline-block;
+      margin: 0.5rem;
+      border: black 1px solid;
+      border-radius: 20px;
+      padding: 0.5rem 0.7rem;
+    }
   }
 }

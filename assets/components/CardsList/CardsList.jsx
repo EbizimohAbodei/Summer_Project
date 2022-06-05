@@ -97,8 +97,6 @@ function CardsList() {
     }
   };
 
-  console.log(likes);
-
   return (
     <div className="cardsListContainer">
       <div className="heroBanner">
