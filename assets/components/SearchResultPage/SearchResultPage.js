@@ -183,18 +183,18 @@ const SearchResultPage = () => {
           </Card>
         );
       })}
-      <div>
+      <div className="cardListNav">
         {meta.previous && (
           <button
-            className="prevButton"
+            className="prevButton "
             onClick={() => handleLike(meta.previous)}
           >
-            Prev-page
+            Previous
           </button>
         )}
         {meta.next && (
-          <button className="prevButton" onClick={() => changePage(meta.next)}>
-            Next-page
+          <button className="nextButton" onClick={() => changePage(meta.next)}>
+            Next
           </button>
         )}
       </div>

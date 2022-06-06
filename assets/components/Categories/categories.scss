@@ -22,7 +22,8 @@ li {
   flex-wrap: nowrap;
   word-wrap: none;
   align-items: center;
-  margin: 0.5rem;
+  height: 100%;
+  padding: 0 10px;
   cursor: pointer;
   &:hover {
     @include hoover;
@@ -38,11 +39,16 @@ li {
 .categories {
   z-index: 100;
   width: 55%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 
   .broadCategories {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     transition-duration: 0.5s;
+    height: 100%;
   }
 
   .categoryItems {

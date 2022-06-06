@@ -148,11 +148,11 @@ function CardsList() {
       <div className="cardListNav">
         {meta.previous !== null && (
           <button className="prevButton" onClick={prevPage}>
-            Prev-page
+            Previous
           </button>
         )}
         <button className="nextButton" onClick={nextPage}>
-          Next-page
+          Next
         </button>
       </div>
     </div>
