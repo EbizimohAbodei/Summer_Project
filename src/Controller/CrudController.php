@@ -14,12 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/spa', name: 'app_crud')]
 class CrudController extends AbstractController
 {
-    #[Route('/addlikes', name: 'add_likes', methods: ["POST"] )]
-    public function addLike(Request $request, ManagerRegistry $doctrine): Response
+    #[Route('/addlikes', name: 'add_likes', methods: ["POST", "GET"] )]
+    public function addLike(Request $request, ManagerRegistry $doctrine, EntityManagerInterface $entitymanager): Response
     {   
-        $date = new \Datetime($request->request->get("endDate"));
-    
         $em = $doctrine->getManager();
+
+        $date = new \Datetime($request->request->get("endDate"));
+
         $singleEvent = new EventLikes();
         $singleEvent->setEventId($request->request->get("eventId"));
         $singleEvent->setLikeCount($request->request->get("likeCount"));
@@ -57,4 +58,27 @@ class CrudController extends AbstractController
 
         return $this->json($data);
     }
+
+    #[Route("/updatelike/{id}", name: "update_likes")]
+    public function updatelike(int $id, Request $request, ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $singleEvent = $entityManager->getRepository(EventLikes::class)->find($id);
+
+        $content = json_decode($request->getContent());
+
+        $singleEvent->setLikeCount($singleEvent->getLikeCount() + $content->likeCount);
+        $singleEvent->setInterestCount($singleEvent->getInterestCount() + $content->interestCount);
+        $entityManager->flush();
+
+        $data = [
+            'id' => $singleEvent->getId(),
+            'likeCount' => $singleEvent->getLikeCount(),
+            'interestCount' => $singleEvent->getInterestCount(),
+        ];
+
+
+        return $this->json($data);
+    }
+
 }
