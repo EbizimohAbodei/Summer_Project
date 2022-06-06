@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "075bc6b26c7b7d871564c36c84ddc943",
+=======
+    "content-hash": "7e0d7ac99decbdf98ed6f74f3ae9ceb8",
+>>>>>>> d393c8e7fda510698fb3d4f6b82016056c2d9d16
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2841,6 +2845,7 @@
         },
         {
             "name": "symfony/flex",
+<<<<<<< HEAD
             "version": "v2.1.8",
             "source": {
                 "type": "git",
@@ -2851,6 +2856,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/flex/zipball/dcbe58c3fbafeaeb32f619bf94c3912c0c732b65",
                 "reference": "dcbe58c3fbafeaeb32f619bf94c3912c0c732b65",
+=======
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/flex.git",
+                "reference": "f15c99ec98b5b31ae862035c51741294708211f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/f15c99ec98b5b31ae862035c51741294708211f2",
+                "reference": "f15c99ec98b5b31ae862035c51741294708211f2",
+>>>>>>> d393c8e7fda510698fb3d4f6b82016056c2d9d16
                 "shasum": ""
             },
             "require": {
@@ -2886,7 +2903,11 @@
             "description": "Composer plugin for Symfony",
             "support": {
                 "issues": "https://github.com/symfony/flex/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/flex/tree/v2.1.8"
+=======
+                "source": "https://github.com/symfony/flex/tree/v2.2.0"
+>>>>>>> d393c8e7fda510698fb3d4f6b82016056c2d9d16
             },
             "funding": [
                 {
@@ -2902,7 +2923,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2022-05-02T10:23:41+00:00"
+=======
+            "time": "2022-06-03T08:42:12+00:00"
+>>>>>>> d393c8e7fda510698fb3d4f6b82016056c2d9d16
         },
         {
             "name": "symfony/framework-bundle",

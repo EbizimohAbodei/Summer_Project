@@ -34,5 +34,25 @@ a {
         @include hoover;
       }
     }
+
+    .tag {
+      display: inline-block;
+      margin: 0.5rem;
+      border: black 1px solid;
+      border-radius: 20px;
+      padding: 0.5rem 0.7rem;
+    }
+
+    .like {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 20px;
+      width: 20px;
+
+      path {
+        fill: #a3d7f1;
+      }
+    }
   }
 }
