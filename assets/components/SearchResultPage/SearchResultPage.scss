@@ -55,4 +55,21 @@ a {
       }
     }
   }
+
+  .cardListNav {
+    width: 85%;
+    margin: 5rem auto 0 auto;
+    position: relative;
+  }
+
+  .prevButton {
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+  }
+  .nextButton {
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+  }
 }
