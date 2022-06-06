@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { BsHeartFill } from "react-icons/bs";
+
 import Card from "../Card/Card";
+import Loading from "../Loading/Loading";
 import "./SearchResultPage.scss";
 
 const SearchResultPage = () => {
@@ -9,10 +12,12 @@ const SearchResultPage = () => {
   const [events, setEvents] = useState(searchResult.data);
   const [meta, setMeta] = useState(searchResult.meta);
   const [tags, setTags] = useState([]);
+  const [likes, setLikes] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const getTags = (array) => {
+  const getTagsAndLikes = (array) => {
     const getTags = array.map((tag, i) => {
       return tag.keywords.map((singleEvent) => {
         if (!singleEvent["@id"]) {
@@ -29,12 +34,20 @@ const SearchResultPage = () => {
     allTags
       .then(axios.spread((...res) => setTags(res)))
       .catch((err) => console.log("loading tags returned: ", err))
-      .finally(() => setLoading(false));
+      .finally(() =>
+        axios
+          .get("http://127.0.0.1:8000/spa/getlikes")
+          .then((res) => setLikes(res.data))
+          .catch((err) =>
+            console.log("getting event likes returned an error: ", err)
+          )
+          .finally(() => setLoading(false))
+      );
   };
 
   useEffect(() => {
     setLoading(true);
-    getTags(events);
+    getTagsAndLikes(events);
   }, []);
 
   const changePage = (fetch) => {
@@ -44,7 +57,7 @@ const SearchResultPage = () => {
       .then((res) => {
         setEvents(res.data.data);
         setMeta(res.data.meta);
-        getTags(res.data.data);
+        getTagsAndLikes(res.data.data);
       })
       .catch((err) => console.log("loading new events returned: ", err))
       .finally(() => setLoading(false));
@@ -65,18 +78,51 @@ const SearchResultPage = () => {
       .catch((err) => console.log("loading events by tag returned: ", err));
   };
 
+  const handleLike = (id, endTime, addLike, addInterest) => {
+    const eventHasLikes = likes.filter((like) => like.eventId.includes(id));
+    if (eventHasLikes.length > 0) {
+      console.log("id: ", eventHasLikes[0].id);
+      axios
+        .put(`http://127.0.0.1:8000/spa/updatelike/${eventHasLikes[0].id}`, {
+          eventId: id,
+          endDate: endTime,
+          likeCount: addLike,
+          interestCount: addInterest,
+        })
+        .then((res) => console.log("res: ", res))
+        .catch((err) =>
+          console.log("updating likes or interestCount returned error: ", err)
+        );
+    } else {
+      let postForm = new FormData();
+      postForm.append("likeCount", addLike);
+      postForm.append("interestCount", addInterest);
+      postForm.append("eventId", id);
+      postForm.append("endDate", endTime);
+      axios
+        .post("http://127.0.0.1:8000/spa/addlikes", postForm)
+        .then((res) => console.log("form posted", res))
+        .catch((err) => console.log("error occurred: ", err))
+        .finally(() => {
+          axios
+            .get("http://127.0.0.1:8000/spa/getlikes")
+            .then((res) => setLikes(res.data));
+        });
+    }
+  };
+
   if (loading) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
-  if (events.length === 0 || tags.length === 0) {
+  if (events.length === 0) {
     return (
       <div>
         <p>no results</p>
       </div>
     );
   }
-  // console.log(tags[1]);
+
   return (
     <div className="eventContainer">
       {events.map((event, i) => {
@@ -97,22 +143,13 @@ const SearchResultPage = () => {
             </li>
           );
         });
+
         let image;
         try {
           image = event.images[0].url;
         } catch {
           image = "http://source.unsplash.com/afW1hht0NSs";
         }
-
-        const description = event.description
-          ? event.description.fi
-          : "no description";
-        const shortDescription = event.short_description
-          ? event.short_description.en || event.short_description.fi
-          : "";
-        let eventName = event.name
-          ? event.name.en || event.name.fi || event.name.sv
-          : "No name";
 
         return (
           <Card
@@ -140,16 +177,26 @@ const SearchResultPage = () => {
               event.short_description?.sv ||
               event.short_description?.ru
             }
+            addInterest={() => {
+              handleLike(event.id, event.end_time, 0, 1);
+              navigate(`/events/${event.id}`);
+            }}
           >
+            {<ul>{singleEventTags}</ul>}
             <div>
-              <ul>{singleEventTags}</ul>
+              <BsHeartFill
+                onClick={() => handleLike(event.id, event.end_time, 1, 0)}
+              />
             </div>
           </Card>
         );
       })}
       <div>
         {meta.previous && (
-          <button className="prevButton" onClick={handleLike}>
+          <button
+            className="prevButton"
+            onClick={() => handleLike(meta.previous)}
+          >
             Prev-page
           </button>
         )}

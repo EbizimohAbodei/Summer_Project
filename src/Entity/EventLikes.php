@@ -22,6 +22,9 @@ class EventLikes
     #[ORM\Column(type: 'integer')]
     private $interestCount;
 
+    #[ORM\Column(type: 'date')]
+    private $endDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class EventLikes
     public function setInterestCount(int $interestCount): self
     {
         $this->interestCount = $interestCount;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
 
         return $this;
     }

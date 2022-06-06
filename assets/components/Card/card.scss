@@ -38,6 +38,10 @@
   .name {
     font-size: x-large;
     font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .like {

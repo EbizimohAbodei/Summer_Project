@@ -3,17 +3,16 @@ import Card from "../Card/Card";
 import "./cardslist.scss";
 import { BsHeartFill } from "react-icons/bs";
 import Loading from "../Loading/Loading";
-const axios = require("axios").default;
+import axios from "axios";
 import HeroBanner from "../HeroBanner/HeroBanner";
+import { useNavigate } from "react-router-dom";
 
 function CardsList() {
   const [allEventsData, setAllEventsData] = useState([]);
   const [meta, setMeta] = useState([]);
-  const [postData, setPostData] = useState({
-    likeCount: 0,
-    interestCount: 0,
-  });
+  const [likes, setLikes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -27,6 +26,11 @@ function CardsList() {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        axios
+          .get("http://127.0.0.1:8000/spa/getlikes")
+          .then((res) => setLikes(res.data));
       });
   }, []);
 
@@ -60,19 +64,40 @@ function CardsList() {
     window.scrollTo(0, 300);
   };
 
-  const handleLike = (e) => {
-    e.preventDefault();
-    console.log(e.target.dataset.id);
-    const { likeCount, interestCount } = postData;
-    let postForm = new FormData();
-    postForm.append("likeCount", likeCount + 1);
-    postForm.append("interestCount", interestCount + 1);
-    postForm.append("eventId", e.target.dataset.id);
-    axios
-      .post("http://127.0.0.1:8000/spa/addlikes", postForm)
-      .then((res) => console.log("form posted", res))
-      .catch((err) => console.log("error occurred: ", err));
+  const handleLike = (id, endTime, addLike, addInterest) => {
+    const eventHasLikes = likes.filter((like) => like.eventId.includes(id));
+    if (eventHasLikes.length > 0) {
+      console.log("id: ", eventHasLikes[0].id);
+      axios
+        .put(`http://127.0.0.1:8000/spa/updatelike/${eventHasLikes[0].id}`, {
+          eventId: id,
+          endDate: endTime,
+          likeCount: addLike,
+          interestCount: addInterest,
+        })
+        .then((res) => console.log("res: ", res))
+        .catch((err) =>
+          console.log("updating likes or interestCount returned error: ", err)
+        );
+    } else {
+      let postForm = new FormData();
+      postForm.append("likeCount", addLike);
+      postForm.append("interestCount", addInterest);
+      postForm.append("eventId", id);
+      postForm.append("endDate", endTime);
+      axios
+        .post("http://127.0.0.1:8000/spa/addlikes", postForm)
+        .then((res) => console.log("form posted", res))
+        .catch((err) => console.log("error occurred: ", err))
+        .finally(() => {
+          axios
+            .get("http://127.0.0.1:8000/spa/getlikes")
+            .then((res) => setLikes(res.data));
+        });
+    }
   };
+
+  console.log(likes);
 
   return (
     <div className="cardsListContainer">
@@ -102,19 +127,21 @@ function CardsList() {
               }
               endTime={new Date(item?.end_time).toLocaleTimeString()}
               description={
-                // item.description.en ||
-                // item.description.fi ||
-                // item.description.sv ||
                 item.short_description?.en ||
                 item.short_description?.fi ||
                 item.short_description?.sv ||
                 item.short_description?.ru
               }
               eventImage={item?.images[0]?.url}
+              addInterest={() => {
+                handleLike(item.id, item.end_time, 0, 1);
+                navigate(`/events/${item.id}`);
+              }}
             >
-              {" "}
-              <div onClick={(e) => handleLike(e)}>
-                <BsHeartFill data-id={item.id} />
+              <div>
+                <BsHeartFill
+                  onClick={() => handleLike(item.id, item.end_time, 1, 0)}
+                />
               </div>
             </Card>
           );
