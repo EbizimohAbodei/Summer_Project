@@ -61,7 +61,7 @@ function Card(props) {
           )}
         </p>
         <p className="description">{props.description}</p>
-        {props.children}
+        <div className="like">{props.children}</div>
       </div>
     </div>
   );
