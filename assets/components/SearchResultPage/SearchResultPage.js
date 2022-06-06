@@ -175,7 +175,7 @@ const SearchResultPage = () => {
             }}
           >
             {<ul>{singleEventTags}</ul>}
-            <div>
+            <div className="like">
               <BsHeartFill
                 onClick={() => handleLike(event.id, event.end_time, 1, 0)}
               />
