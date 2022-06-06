@@ -46,7 +46,7 @@ function Card(props) {
         onClick={() => navigate(`/events/${id}`)}
       />
 
-      <div>
+      <div className="card_info">
         <h1 onClick={props.addInterest} className="name">
           {props.name}
         </h1>
@@ -61,7 +61,7 @@ function Card(props) {
           )}
         </p>
         <p className="description">{props.description}</p>
-        <div className="like">{props.children}</div>
+        {props.children}
       </div>
     </div>
   );
