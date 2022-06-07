@@ -15,9 +15,6 @@ body {
   z-index: 10000;
 }
 
-.switch {
-}
-
 #light {
   background-color: #fafafa;
   color: #131212;
@@ -45,6 +42,7 @@ body {
   height: 65px;
   width: 100%;
   color: gray;
+  text-align: center;
 
   h2 {
     font-size: 1rem;

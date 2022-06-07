@@ -29,10 +29,18 @@ li {
     @include hoover;
   }
 
+  @media (max-width: 928px) {
+    padding: 0 5px;
+  }
+
   .arrow {
     font-size: 1.6em;
     padding-left: 6px;
     margin-bottom: 12px;
+
+    @media (max-width: 928px) {
+      padding-left: 4px;
+    }
   }
 }
 
@@ -42,6 +50,18 @@ li {
   height: 100%;
   display: flex;
   align-items: center;
+
+  @media (max-width: 1099px) {
+    width: 60%;
+  }
+
+  @media (max-width: 1006px) {
+    width: 65%;
+  }
+
+  @media (max-width: 826px) {
+    width: 70%;
+  }
 
   .broadCategories {
     width: 100%;
