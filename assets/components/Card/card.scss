@@ -5,19 +5,28 @@
   margin-bottom: 50px;
   min-width: 45%;
   width: 45%;
-  height: 200px;
+  height: 220px;
   background-color: #fefefe;
   // box-shadow: 2px 3px 15px 1px rgba(0, 0, 0, 0.75);
 
+  @media (max-width: 1023px) {
+    width: 100%;
+  }
+
   &:nth-of-type(2n) {
     margin-left: 10%;
+
+    @media (max-width: 1023px) {
+      margin-left: 0;
+    }
   }
 
   img {
     width: 250px;
-    height: 200px;
+    height: 220px;
     margin-right: 25px;
     object-fit: cover;
+    cursor: pointer;
   }
 
   div {
@@ -41,6 +50,7 @@
 
     &:hover {
       text-decoration: underline;
+      cursor: pointer;
     }
   }
 
@@ -60,6 +70,8 @@
 .card_info {
   display: flex;
   flex-direction: column;
+  word-wrap: break-word;
+  word-break: keep-all;
 }
 
 .date {

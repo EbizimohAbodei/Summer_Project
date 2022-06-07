@@ -35,13 +35,13 @@ function CardsList() {
   }, []);
 
   const prevPage = () => {
-    setLoading(!loading);
+    setLoading(true);
     axios
       .get(`${meta.next}`)
       .then((res) => {
         setAllEventsData(res?.data);
         setMeta(res?.data?.meta);
-        setLoading(!loading);
+        setLoading(false);
       })
       .catch((error) => {
         return error;
@@ -50,13 +50,13 @@ function CardsList() {
   };
 
   const nextPage = () => {
-    setLoading(!loading);
+    setLoading(true);
     axios
       .get(`${meta.previous}`)
       .then((res) => {
         setAllEventsData(res?.data);
         setMeta(res?.data?.meta);
-        setLoading(!loading);
+        setLoading(false);
       })
       .catch((error) => {
         return error;
@@ -112,7 +112,7 @@ function CardsList() {
               name={
                 item.name.en || item.name.fi || item.name.sv || item.name.ru
               }
-              // locationCall={item.location["@id"]}
+              // locationCall={item?.location["@id"]}
               startDate={new Date(item?.start_time).toLocaleDateString()}
               startTime={new Date(item?.start_time).toLocaleTimeString()}
               endDate={
@@ -148,11 +148,11 @@ function CardsList() {
       <div className="cardListNav">
         {meta.previous !== null && (
           <button className="prevButton" onClick={prevPage}>
-            Prev-page
+            Previous
           </button>
         )}
         <button className="nextButton" onClick={nextPage}>
-          Next-page
+          Next
         </button>
       </div>
     </div>

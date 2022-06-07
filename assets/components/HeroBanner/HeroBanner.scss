@@ -32,6 +32,11 @@
     background-image: url("https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2910&q=80");
     background-position: center;
   }
+}
+
+.frame {
+  position: relative;
+  height: 71vh;
 
   &::after {
     content: "";
@@ -47,4 +52,9 @@
     z-index: 10;
     transform: rotate(180deg);
   }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: hwb(0 100% 0%) !important;
 }

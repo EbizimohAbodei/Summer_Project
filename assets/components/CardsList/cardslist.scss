@@ -10,23 +10,68 @@
 
 .cardsList {
   display: flex;
-  min-width: 90vw;
   width: 90%;
   margin: auto;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media (max-width: 1023px) {
+    flex-direction: column;
+  }
 }
 
 .cardListNav {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
   margin: 1rem auto 0 auto;
+  position: relative;
 }
 
 .nextButton,
 .prevButton {
+  display: block;
   padding: 0.3rem;
   margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border: none;
+  background: none;
+  font-size: 1.2em;
+  font-weight: bold;
 
   &:hover {
     cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.prevButton {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-image: url(./arrow.svg);
+    background-size: 20px 20px;
+    left: -20px;
+    top: 7px;
+    transform: rotate(-90deg);
+  }
+}
+
+.nextButton {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-image: url(./arrow.svg);
+    background-size: 20px 20px;
+    right: -20px;
+    top: 7px;
+    transform: rotate(90deg);
   }
 }
