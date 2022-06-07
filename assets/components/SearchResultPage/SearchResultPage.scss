@@ -9,18 +9,17 @@ a {
 }
 
 .eventContainer {
-  width: 80vw;
+  width: 90%;
   padding: 1rem;
   margin: 0 auto;
 
   .card {
     width: 100%;
+    max-width: none;
     height: min-content;
-    // min-height: 10rem;
-    margin: 1rem 0;
+    margin: 2rem 0;
     display: flex;
     text-align: left;
-    // border: 1px solid blue;
     border-radius: 5px;
     padding: 0.5rem;
     box-shadow: 2px 3px 15px 1px rgba(0, 0, 0, 0.75);
@@ -35,6 +34,10 @@ a {
       }
     }
 
+    .card_info {
+      width: 67%;
+    }
+
     .tag {
       display: inline-block;
       margin: 0.5rem;
@@ -42,5 +45,35 @@ a {
       border-radius: 20px;
       padding: 0.5rem 0.7rem;
     }
+
+    .like {
+      position: absolute;
+      bottom: 18px;
+      left: 25px;
+      height: 20px;
+      width: 20px;
+      z-index: 15;
+
+      path {
+        fill: #a3d7f1;
+      }
+    }
+  }
+
+  .cardListNav {
+    width: 85%;
+    margin: 5rem auto 0 auto;
+    position: relative;
+  }
+
+  .prevButton {
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+  }
+  .nextButton {
+    position: absolute;
+    right: 20px;
+    bottom: 0;
   }
 }

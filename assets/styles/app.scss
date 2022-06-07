@@ -10,6 +10,28 @@ body {
   font-family: "Noto Sans Display", sans-serif;
 }
 
+.switchContainer {
+  align-items: center;
+  z-index: 10000;
+}
+
+#light {
+  background-color: #fafafa;
+  color: #131212;
+}
+
+#dark {
+  background-color: #131212;
+  color: #fafafa;
+
+  .card {
+    background-color: grey;
+  }
+  Header {
+    background-color: rgb(106, 136, 126);
+  }
+}
+
 .footerContainer {
   display: flex;
   justify-content: center;
@@ -20,6 +42,7 @@ body {
   height: 65px;
   width: 100%;
   color: gray;
+  text-align: center;
 
   h2 {
     font-size: 1rem;

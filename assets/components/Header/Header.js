@@ -32,35 +32,38 @@ const Header = () => {
     const nav = document.querySelector("#nav");
     if (!nav.classList.contains("navPhone")) nav.classList.add("navPhone");
     else nav.classList.remove("navPhone");
-  };
+    const refreshPage = () => {
+      window.location.href = "/";
+    };
 
-  return (
-    <header>
-      <Link to="/">
-        <h1>Helsinki Events</h1>
-      </Link>
-      <div id="nav">
-        {!searchToggle && (
-          <Categories
-            showCategory={showCategory}
-            showCategories={showCategories}
+    return (
+      <header>
+        <Link to="/" onClick={refreshPage}>
+          <h1>Helsinki Events</h1>
+        </Link>
+        <div id="nav">
+          {!searchToggle && (
+            <Categories
+              showCategory={showCategory}
+              showCategories={showCategories}
+            />
+          )}
+        </div>
+        <BiMenu className="hamburgerMenu" onClick={toggleNav} />
+        <SearchBar
+          showSearch={() => setSearchToggle(!searchToggle)}
+          searchToggle={searchToggle}
+        />
+        {showCategories.show && (
+          <Overlay
+            toggleCategories={() =>
+              setShowCategories({ show: !showCategories.show, category: null })
+            }
           />
         )}
-      </div>
-      <BiMenu className="hamburgerMenu" onClick={toggleNav} />
-      <SearchBar
-        showSearch={() => setSearchToggle(!searchToggle)}
-        searchToggle={searchToggle}
-      />
-      {showCategories.show && (
-        <Overlay
-          toggleCategories={() =>
-            setShowCategories({ show: !showCategories.show, category: null })
-          }
-        />
-      )}
-    </header>
-  );
+      </header>
+    );
+  };
 };
 
 export default Header;

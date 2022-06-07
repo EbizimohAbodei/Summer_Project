@@ -175,7 +175,7 @@ const SearchResultPage = () => {
             }}
           >
             {<ul>{singleEventTags}</ul>}
-            <div>
+            <div className="like">
               <BsHeartFill
                 onClick={() => handleLike(event.id, event.end_time, 1, 0)}
               />
@@ -183,18 +183,18 @@ const SearchResultPage = () => {
           </Card>
         );
       })}
-      <div>
+      <div className="cardListNav">
         {meta.previous && (
           <button
-            className="prevButton"
+            className="prevButton "
             onClick={() => handleLike(meta.previous)}
           >
-            Prev-page
+            Previous
           </button>
         )}
         {meta.next && (
-          <button className="prevButton" onClick={() => changePage(meta.next)}>
-            Next-page
+          <button className="nextButton" onClick={() => changePage(meta.next)}>
+            Next
           </button>
         )}
       </div>

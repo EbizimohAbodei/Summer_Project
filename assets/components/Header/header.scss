@@ -52,4 +52,9 @@ header {
       }
     }
   }
+  h1 {
+    @media (max-width: 928px) {
+      font-size: 1.5em;
+    }
+  }
 }

@@ -13,6 +13,7 @@ const SingleEventPage = () => {
   const [place, setPlace] = useState([]);
   const [image, setImage] = useState();
   const [price, setPrice] = useState({ is_free: true });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -42,11 +43,12 @@ const SingleEventPage = () => {
           .catch((err) =>
             console.log("An error happened while looking place information: ", err)
           );
+        setLoading(!loading);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  return event ? (
+  return !loading ? (
     <div className="eventPage">
       <div className="eventInfo">
         <div className="imageContainer">
