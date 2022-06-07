@@ -10,6 +10,16 @@ body {
   font-family: "Noto Sans Display", sans-serif;
 }
 
+.light {
+  background-color: #fafafa;
+  color: #131212;
+}
+
+.dark {
+  background-color: #131212;
+  color: #fafafa;
+}
+
 .footerContainer {
   display: flex;
   justify-content: center;

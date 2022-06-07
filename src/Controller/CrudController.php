@@ -20,7 +20,6 @@ class CrudController extends AbstractController
         $em = $doctrine->getManager();
 
         $date = new \Datetime($request->request->get("endDate"));
-
         $singleEvent = new EventLikes();
         $singleEvent->setEventId($request->request->get("eventId"));
         $singleEvent->setLikeCount($request->request->get("likeCount"));

@@ -13,11 +13,11 @@ const SearchResultPage = () => {
   const [meta, setMeta] = useState(searchResult.meta);
   const [tags, setTags] = useState([]);
   const [likes, setLikes] = useState([]);
-
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const getTagsAndLikes = (array) => {
+    setLoading(true);
     const getTags = array.map((tag, i) => {
       return tag.keywords.map((singleEvent) => {
         if (!singleEvent["@id"]) {
@@ -41,12 +41,11 @@ const SearchResultPage = () => {
           .catch((err) =>
             console.log("getting event likes returned an error: ", err)
           )
-          .finally(() => setLoading(false))
+          .then(() => setLoading(false))
       );
   };
 
   useEffect(() => {
-    setLoading(true);
     getTagsAndLikes(events);
   }, []);
 
@@ -60,11 +59,10 @@ const SearchResultPage = () => {
         getTagsAndLikes(res.data.data);
       })
       .catch((err) => console.log("loading new events returned: ", err))
-      .finally(() => setLoading(false));
+      .then(() => setLoading(false));
   };
 
   const getEventsByCategory = (e) => {
-    console.log(e.target.dataset.id);
     axios
       .get(
         `https://api.hel.fi/linkedevents/v1/event/?keyword=${e.target.dataset.id}&start=today`
@@ -132,12 +130,7 @@ const SearchResultPage = () => {
               onClick={(e) => getEventsByCategory(e)}
               key={i}
               data-id={tag.data.id}
-              style={{
-                display: "inline-block",
-                margin: "0.5rem",
-                backgroundColor: "blue",
-                padding: "0.5rem",
-              }}
+              className="tag"
             >
               {tag.data.name.en || tag.data.name.fi || tag.data.name.sv}
             </li>
@@ -150,7 +143,6 @@ const SearchResultPage = () => {
         } catch {
           image = "http://source.unsplash.com/afW1hht0NSs";
         }
-
         return (
           <Card
             eventImage={image}
@@ -183,7 +175,7 @@ const SearchResultPage = () => {
             }}
           >
             {<ul>{singleEventTags}</ul>}
-            <div>
+            <div className="like">
               <BsHeartFill
                 onClick={() => handleLike(event.id, event.end_time, 1, 0)}
               />
@@ -191,18 +183,18 @@ const SearchResultPage = () => {
           </Card>
         );
       })}
-      <div>
+      <div className="cardListNav">
         {meta.previous && (
           <button
-            className="prevButton"
+            className="prevButton "
             onClick={() => handleLike(meta.previous)}
           >
-            Prev-page
+            Previous
           </button>
         )}
         {meta.next && (
-          <button className="prevButton" onClick={() => changePage(meta.next)}>
-            Next-page
+          <button className="nextButton" onClick={() => changePage(meta.next)}>
+            Next
           </button>
         )}
       </div>

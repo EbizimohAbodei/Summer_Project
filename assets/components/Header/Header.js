@@ -27,9 +27,13 @@ const Header = () => {
     setShowCategories({ ...showCategories, category: category });
   };
 
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
   return (
     <header>
-      <Link to="/">
+      <Link to="/" onClick={refreshPage}>
         <h1>Helsinki Events</h1>
       </Link>
       {!searchToggle && (

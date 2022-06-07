@@ -93,70 +93,60 @@ function CardsList() {
     }
   };
 
-  console.log(likes);
-
   return (
     <div className="cardsListContainer">
       <div className="heroBanner">
         <HeroBanner />
       </div>
-      {console.log(loading)}
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="cardsList">
-          {allEventsData?.data?.map((item) => {
-            return (
-              <Card
-                key={item.id}
-                id={item.id}
-                name={item.name.en || item.name.fi || item.name.sv || item.name.ru}
-                locationCall={item.location["@id"]}
-                startDate={new Date(item?.start_time).toLocaleDateString()}
-                startTime={new Date(item?.start_time).toLocaleTimeString()}
-                endDate={
-                  new Date(item?.end_time).toLocaleDateString() ===
-                    new Date(item?.start_time).toLocaleDateString() ||
-                  new Date(item?.start_time).toLocaleDateString() >
-                    new Date(item?.end_time).toLocaleDateString()
-                    ? ""
-                    : new Date(item?.end_time).toLocaleDateString()
-                }
-                endTime={new Date(item?.end_time).toLocaleTimeString()}
-                description={
-                  item.short_description?.en ||
-                  item.short_description?.fi ||
-                  item.short_description?.sv ||
-                  item.short_description?.ru
-                }
-                eventImage={item?.images[0]?.url}
-                addInterest={() => {
-                  handleLike(item.id, item.end_time, 0, 1);
-                  navigate(`/events/${item.id}`);
-                }}
-              >
-                <div>
-                  <BsHeartFill onClick={() => handleLike(item.id, item.end_time, 1, 0)} />
-                </div>
-              </Card>
-            );
-          })}
-        </div>
-      )}
-      {!loading ? (
-        <div className="cardListNav">
-          {meta.previous !== null && (
-            <button className="prevButton" onClick={prevPage}>
-              Prev-page
-            </button>
-          )}
-          <button className="nextButton" onClick={nextPage}>
-            Next-page
+      {loading && <Loading />}
+      <div className="cardsList">
+        {allEventsData?.data?.map((item) => {
+          return (
+            <Card
+              key={item.id}
+              id={item.id}
+              name={item.name.en || item.name.fi || item.name.sv || item.name.ru}
+              locationCall={item.location["@id"]}
+              startDate={new Date(item?.start_time).toLocaleDateString()}
+              startTime={new Date(item?.start_time).toLocaleTimeString()}
+              endDate={
+                new Date(item?.end_time).toLocaleDateString() ===
+                  new Date(item?.start_time).toLocaleDateString() ||
+                new Date(item?.start_time).toLocaleDateString() >
+                  new Date(item?.end_time).toLocaleDateString()
+                  ? ""
+                  : new Date(item?.end_time).toLocaleDateString()
+              }
+              endTime={new Date(item?.end_time).toLocaleTimeString()}
+              description={
+                item.short_description?.en ||
+                item.short_description?.fi ||
+                item.short_description?.sv ||
+                item.short_description?.ru
+              }
+              eventImage={item?.images[0]?.url}
+              addInterest={() => {
+                handleLike(item.id, item.end_time, 0, 1);
+                navigate(`/events/${item.id}`);
+              }}
+            >
+              <div>
+                <BsHeartFill onClick={() => handleLike(item.id, item.end_time, 1, 0)} />
+              </div>
+            </Card>
+          );
+        })}
+      </div>
+      <div className="cardListNav">
+        {meta.previous !== null && (
+          <button className="prevButton" onClick={prevPage}>
+            Previous
           </button>
-        </div>
-      ) : (
-        ""
-      )}
+        )}
+        <button className="nextButton" onClick={nextPage}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }
