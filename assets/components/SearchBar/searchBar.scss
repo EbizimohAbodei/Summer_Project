@@ -51,6 +51,10 @@ $inputbgfocus: rgb(190, 210, 210);
         outline: none !important;
         border: 2px solid rgb(76, 210, 210);
       }
+
+      @media (max-width: 812px) {
+        width: 15vw;
+      }
     }
 
     input[type="date"] {

@@ -72,18 +72,20 @@ const Layout = () => {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div id={theme}>
         <Header />
-        <label>{theme === "light" ? "Light" : "Dark"}</label>
-        <FormControl
-          className="switchContainer"
-          onChange={toggleTheme}
-          control={
-            <MaterialUISwitch
-              className="switch"
-              sx={{ m: 1 }}
-              defaultChecked={theme === "dark"}
-            />
-          }
-        />
+        <div className="switch">
+          <label>{theme === "light" ? "Light" : "Dark"}</label>
+          <FormControl
+            className="switchContainer"
+            onChange={toggleTheme}
+            control={
+              <MaterialUISwitch
+                className="switch"
+                sx={{ m: 1 }}
+                defaultChecked={theme === "dark"}
+              />
+            }
+          />
+        </div>
         <Main />
         <Footer />
       </div>
