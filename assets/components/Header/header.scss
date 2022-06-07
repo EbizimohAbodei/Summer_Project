@@ -1,3 +1,18 @@
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@mixin slide-in($duration) {
+  animation: slide-in $duration ease-in-out both;
+}
+
 header {
   height: 65px;
   display: flex;
@@ -15,7 +30,7 @@ header {
   }
 
   @media screen and (max-width: 950px) {
-    nav {
+    .categories {
       display: none;
     }
 
@@ -27,32 +42,35 @@ header {
     .navPhone nav {
       display: block;
       position: absolute;
-      top: 5rem;
+      top: 4rem;
       left: 1rem;
-      width: 80vw;
+      height: auto;
+      width: 15rem;
 
       .broadCategories {
         display: flex;
         flex-direction: column;
-        background-color: rgb(176, 24, 24);
+        border: 1px solid rgb(178, 178, 178);
 
         li {
-          display: flex;
+          background-color: rgb(255, 255, 255);
           flex-direction: column;
-          width: 10rem;
-          li {
-            display: flex;
-            flex-direction: column;
+
+          .categoryItems {
+            @include slide-in(0.5s);
+            height: auto;
+            width: min-content;
+            position: relative;
+            top: 0;
+            border: 0;
+            border-top: 1px solid rgb(178, 178, 178);
+            margin-bottom: 1rem;
+            transition: height 0.3s ease;
+            li {
+              width: 10rem;
+            }
           }
         }
-      }
-      .categoryItems {
-        position: relative;
-        top: 0;
-        align-items: flex-start;
-        height: min-content;
-        width: min-content;
-        overflow: hidden;
       }
     }
   }

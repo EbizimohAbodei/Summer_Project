@@ -79,7 +79,7 @@ export const Categories = ({ showCategory, showCategories }) => {
           text="Activities"
           showCategory={() => showCategory("activities")}
         >
-          {showCategories.show && (
+          {showCategories.category === "activities" && (
             <CategoryList
               category={categories.filter(
                 (category) => category.category === showCategories.category
@@ -87,18 +87,51 @@ export const Categories = ({ showCategory, showCategories }) => {
             />
           )}
         </CategoryItem>
-        <li onClick={() => showCategory("arts")}>
-          Arts <span className="arrow">&#8964;</span>
-        </li>
-        <li onClick={() => showCategory("groupSegment")}>
-          Groups<span className="arrow">&#8964;</span>
-        </li>
-        <li onClick={() => showCategory("seeAndDo")}>
-          See & Do<span className="arrow">&#8964;</span>
-        </li>
-        <li onClick={() => showCategory("workAndStudy")}>
-          Work & Study<span className="arrow">&#8964;</span>
-        </li>
+        <CategoryItem text="Arts" showCategory={() => showCategory("arts")}>
+          {showCategories.category === "arts" && (
+            <CategoryList
+              category={categories.filter(
+                (category) => category.category === showCategories.category
+              )}
+            />
+          )}
+        </CategoryItem>
+        <CategoryItem
+          text="Groups"
+          showCategory={() => showCategory("groupSegment")}
+        >
+          {showCategories.category === "groupSegment" && (
+            <CategoryList
+              category={categories.filter(
+                (category) => category.category === showCategories.category
+              )}
+            />
+          )}
+        </CategoryItem>
+        <CategoryItem
+          text="See & Do"
+          showCategory={() => showCategory("seeAndDo")}
+        >
+          {showCategories.category === "seeAndDo" && (
+            <CategoryList
+              category={categories.filter(
+                (category) => category.category === showCategories.category
+              )}
+            />
+          )}
+        </CategoryItem>
+        <CategoryItem
+          text="Work & Study"
+          showCategory={() => showCategory("workAndStudy")}
+        >
+          {showCategories.category === "workAndStudy" && (
+            <CategoryList
+              category={categories.filter(
+                (category) => category.category === showCategories.category
+              )}
+            />
+          )}
+        </CategoryItem>
       </ul>
     </nav>
   );
