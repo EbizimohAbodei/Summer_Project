@@ -34,12 +34,16 @@ header {
       .broadCategories {
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: rgb(176, 24, 24);
 
         li {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           width: 10rem;
+          li {
+            display: flex;
+            flex-direction: column;
+          }
         }
       }
       .categoryItems {
@@ -50,11 +54,6 @@ header {
         width: min-content;
         overflow: hidden;
       }
-    }
-  }
-  h1 {
-    @media (max-width: 928px) {
-      font-size: 1.5em;
     }
   }
 }
