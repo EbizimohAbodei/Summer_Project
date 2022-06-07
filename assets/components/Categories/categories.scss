@@ -46,7 +46,6 @@ li {
 
 .categories {
   z-index: 100;
-  width: 55%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -76,7 +75,8 @@ li {
     position: absolute;
     top: 64px;
     background-color: #fff;
-    width: 50%;
+    width: 20%;
+    border: 1px solid rgb(178, 178, 178);
     @include slide-down(0.5s);
     li {
       display: flex;

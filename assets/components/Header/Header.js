@@ -1,5 +1,6 @@
 import ReactDom from "react-dom/client";
 import React, { useState } from "react";
+import { BiMenu } from "react-icons/bi";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import "./header.scss";
@@ -27,6 +28,12 @@ const Header = () => {
     setShowCategories({ ...showCategories, category: category });
   };
 
+  const toggleNav = () => {
+    const nav = document.querySelector("#nav");
+    if (!nav.classList.contains("navPhone")) nav.classList.add("navPhone");
+    else nav.classList.remove("navPhone");
+  };
+
   const refreshPage = () => {
     window.location.href = "/";
   };
@@ -36,18 +43,31 @@ const Header = () => {
       <Link to="/" onClick={refreshPage}>
         <h1>Helsinki Events</h1>
       </Link>
-      {!searchToggle && (
-        <Categories showCategory={showCategory} showCategories={showCategories} />
-      )}
+      <div id="nav">
+        {!searchToggle && (
+          <Categories
+            showCategory={showCategory}
+            showCategories={showCategories}
+          />
+        )}
+      </div>
+      <BiMenu
+        className="hamburgerMenu"
+        onClick={() => {
+          toggleNav();
+          setSearchToggle(false);
+        }}
+      />
       <SearchBar
         showSearch={() => setSearchToggle(!searchToggle)}
         searchToggle={searchToggle}
       />
       {showCategories.show && (
         <Overlay
-          toggleCategories={() =>
-            setShowCategories({ show: !showCategories.show, category: null })
-          }
+          toggleCategories={() => {
+            setShowCategories({ show: !showCategories.show, category: null });
+            toggleNav();
+          }}
         />
       )}
     </header>
