@@ -6,24 +6,22 @@ import CardsList from "./components/CardsList/CardsList.jsx";
 import SingleEventPage from "./components/SingleEventPage/SingleEventPage";
 import SearchResultPage from "./components/SearchResultPage/SearchResultPage";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-
-// const RouterWrapper = (props) => {
-//   const params = useParams();
-//   return <SingleEventPage params={params} {...props} />;
-// };
+import { CookiesProvider } from "react-cookie";
 
 const Index = () => {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<CardsList />} />
-          <Route path="events/:id" element={<SingleEventPage />} />
-          <Route path="search/:searchTerm" element={<SearchResultPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <CookiesProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<CardsList />} />
+            <Route path="events/:id" element={<SingleEventPage />} />
+            <Route path="search/:searchTerm" element={<SearchResultPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CookiesProvider>
   );
 };
 

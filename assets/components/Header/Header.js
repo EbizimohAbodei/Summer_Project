@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   const refreshPage = () => {
-    window.location.reload();
+    window.location.href = "/";
   };
 
   return (

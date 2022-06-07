@@ -112,7 +112,7 @@ function CardsList() {
               name={
                 item.name.en || item.name.fi || item.name.sv || item.name.ru
               }
-              locationCall={item.location["@id"]}
+              // locationCall={item.location["@id"]}
               startDate={new Date(item?.start_time).toLocaleDateString()}
               startTime={new Date(item?.start_time).toLocaleTimeString()}
               endDate={
