@@ -8,4 +8,48 @@ header {
   background-color: white;
   padding: 0 5%;
   z-index: 10000;
+  position: relative;
+
+  .hamburgerMenu {
+    display: none;
+  }
+
+  @media screen and (max-width: 950px) {
+    nav {
+      display: none;
+    }
+
+    .hamburgerMenu {
+      display: block;
+      font-size: 2rem;
+    }
+
+    .navPhone nav {
+      display: block;
+      position: absolute;
+      top: 5rem;
+      left: 1rem;
+      width: 80vw;
+
+      .broadCategories {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+
+        li {
+          display: flex;
+          flex-direction: row;
+          width: 10rem;
+        }
+      }
+      .categoryItems {
+        position: relative;
+        top: 0;
+        align-items: flex-start;
+        height: min-content;
+        width: min-content;
+        overflow: hidden;
+      }
+    }
+  }
 }
