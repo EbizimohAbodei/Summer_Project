@@ -5,15 +5,6 @@ import axios from "axios";
 import Loading from "../Loading/Loading";
 import { Link, useNavigate } from "react-router-dom";
 
-const createAddress = (streetaddress, postalcode, localaddress) => {
-  const address = !streetaddress ? "" : streetaddress.fi + ", ";
-  const postal_code = !postalcode ? "" : postalcode + ", ";
-  const local_address = !localaddress ? "" : localaddress.fi + ", ";
-  const street_address = `${address}${postal_code}${local_address}`;
-
-  return street_address ? street_address : "no address";
-};
-
 function Card(props) {
   const [locationData, setLocationData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -39,12 +30,21 @@ function Card(props) {
     return <Loading />;
   }
 
+  const address = !locationData.street_address
+    ? ""
+    : locationData.street_address.fi + ", ";
+
+  const postal_code = !locationData.postal_code ? "" : locationData.postal_code + ", ";
+
+  const local_address = !locationData.address_locality
+    ? ""
+    : locationData.address_locality.fi + ", ";
+
+  const street_address = `${address}${postal_code}${local_address}`;
+
   return (
     <div className="card">
-      <img
-        src={props.eventImage || image}
-        onClick={() => navigate(`/events/${id}`)}
-      />
+      <img src={props.eventImage || image} onClick={() => navigate(`/events/${id}`)} />
 
       <div className="card_info">
         <h1 onClick={props.addInterest} className="name">
@@ -53,13 +53,7 @@ function Card(props) {
         <p className="dateTime">
           {props.startDate} {props.startTime} - {props.endDate} {props.endTime}
         </p>
-        <p className="location">
-          {createAddress(
-            locationData.street_address,
-            locationData.postal_code,
-            locationData.address_locality
-          )}
-        </p>
+        <p className="location">{street_address ? street_address : "no address"}</p>
         <p className="description">{props.description}</p>
         {props.children}
       </div>
