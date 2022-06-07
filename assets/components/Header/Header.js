@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   const refreshPage = () => {
-    window.location.reload();
+    window.location.href = "/";
   };
 
   return (
@@ -37,10 +37,7 @@ const Header = () => {
         <h1>Helsinki Events</h1>
       </Link>
       {!searchToggle && (
-        <Categories
-          showCategory={showCategory}
-          showCategories={showCategories}
-        />
+        <Categories showCategory={showCategory} showCategories={showCategories} />
       )}
       <SearchBar
         showSearch={() => setSearchToggle(!searchToggle)}
