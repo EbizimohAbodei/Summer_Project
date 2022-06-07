@@ -31,13 +31,13 @@ function CardsList() {
   }, []);
 
   const prevPage = () => {
-    setLoading(!loading);
+    setLoading(true);
     axios
       .get(`${meta.next}`)
       .then((res) => {
         setAllEventsData(res?.data);
         setMeta(res?.data?.meta);
-        setLoading(!loading);
+        setLoading(false);
       })
       .catch((error) => {
         return error;
@@ -46,13 +46,13 @@ function CardsList() {
   };
 
   const nextPage = () => {
-    setLoading(!loading);
+    setLoading(true);
     axios
       .get(`${meta.previous}`)
       .then((res) => {
         setAllEventsData(res?.data);
         setMeta(res?.data?.meta);
-        setLoading(!loading);
+        setLoading(false);
       })
       .catch((error) => {
         return error;
@@ -106,7 +106,7 @@ function CardsList() {
               key={item.id}
               id={item.id}
               name={item.name.en || item.name.fi || item.name.sv || item.name.ru}
-              locationCall={item.location["@id"]}
+              // locationCall={item?.location["@id"]}
               startDate={new Date(item?.start_time).toLocaleDateString()}
               startTime={new Date(item?.start_time).toLocaleTimeString()}
               endDate={
