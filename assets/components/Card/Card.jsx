@@ -46,10 +46,7 @@ function Card(props) {
 
   return (
     <div className="card">
-      <img
-        src={props.eventImage || image}
-        onClick={() => navigate(`/events/${id}`)}
-      />
+      <img src={props.eventImage || image} onClick={props.addInterest} />
 
       <div className="card_info">
         <h1 onClick={props.addInterest} className="name">

@@ -124,6 +124,7 @@ const SearchResultPage = () => {
   return (
     <div className="eventContainer">
       {events.map((event, i) => {
+        const likeData = likes.find((like) => like.eventId === event.id);
         const singleEventTags = tags[i]?.map((tag, i) => {
           return (
             <li
@@ -171,7 +172,9 @@ const SearchResultPage = () => {
             }
             addInterest={() => {
               handleLike(event.id, event.end_time, 0, 1);
-              navigate(`/events/${event.id}`);
+              navigate(`/events/${event.id}`, {
+                state: { response: likeData },
+              });
             }}
           >
             {<ul>{singleEventTags}</ul>}
@@ -179,6 +182,7 @@ const SearchResultPage = () => {
               <BsHeartFill
                 onClick={() => handleLike(event.id, event.end_time, 1, 0)}
               />
+              <p>{likeData?.interestCount || "0"}</p>
             </div>
           </Card>
         );
