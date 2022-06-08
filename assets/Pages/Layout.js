@@ -6,18 +6,19 @@ import { createContext, useState } from "react";
 import { styled } from "@mui/material/styles";
 import FormControl from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 
 export const ThemeContext = createContext(null);
 
 const Layout = () => {
-  const [theme, setTheme] = useState();
-  // const [cookies, setCookie] = useCookies(["theme"]);
+  const [theme, setTheme] = useState("light");
 
-  // cookies.theme ? setTheme(cookies.theme) : setTheme("light");
+  const cook = Cookies.get("theme");
+  // cook ? setTheme(cook) : setTheme("light");
   const toggleTheme = () => {
     setTheme((current) => (current === "light" ? "dark" : "light"));
-    // setCookie("theme", { theme }, { path: "/" });
+    Cookies.set("theme", theme, { path: "/" });
+    console.log(Cookies.get("theme"));
   };
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
