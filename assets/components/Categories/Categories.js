@@ -34,7 +34,6 @@ const CategoryList = ({ category }) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
-    console.log(e.target.dataset.id);
     axios
       .get(
         `https://api.hel.fi/linkedevents/v1/event/?keyword=${e.target.dataset.id}&start=today`
