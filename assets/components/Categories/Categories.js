@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./categories.scss";
 
@@ -62,45 +62,77 @@ const CategoryList = ({ category }) => {
 };
 
 export const Categories = ({ showCategory, showCategories }) => {
+  const CategoryItem = ({ text, showCategory, children }) => {
+    return (
+      <li onClick={showCategory}>
+        {text}
+        <span className="arrow">&#8964;</span>
+        {children}
+      </li>
+    );
+  };
+
   return (
     <nav role="navigation" className="categories">
       <ul className="broadCategories">
-        <li onClick={() => showCategory("activities")}>
-          Activities <span className="arrow">&#8964;</span>
-        </li>
-        <li onClick={() => showCategory("arts")}>
-          Arts <span className="arrow">&#8964;</span>
-        </li>
-        <li onClick={() => showCategory("groupSegment")}>
-          Groups<span className="arrow">&#8964;</span>
-        </li>
-        <li onClick={() => showCategory("seeAndDo")}>
-          See and Do<span className="arrow">&#8964;</span>
-        </li>
-        <li onClick={() => showCategory("workAndStudy")}>
-          Work and Study<span className="arrow">&#8964;</span>
-        </li>
-        {showCategories.show && (
-          <CategoryList
-            category={categories.filter(
-              (category) => category.category === showCategories.category
-            )}
-          />
-        )}
+        <CategoryItem
+          text="Activities"
+          showCategory={() => showCategory("activities")}
+        >
+          {showCategories.category === "activities" && (
+            <CategoryList
+              category={categories.filter(
+                (category) => category.category === showCategories.category
+              )}
+            />
+          )}
+        </CategoryItem>
+        <CategoryItem text="Arts" showCategory={() => showCategory("arts")}>
+          {showCategories.category === "arts" && (
+            <CategoryList
+              category={categories.filter(
+                (category) => category.category === showCategories.category
+              )}
+            />
+          )}
+        </CategoryItem>
+        <CategoryItem
+          text="Groups"
+          showCategory={() => showCategory("groupSegment")}
+        >
+          {showCategories.category === "groupSegment" && (
+            <CategoryList
+              category={categories.filter(
+                (category) => category.category === showCategories.category
+              )}
+            />
+          )}
+        </CategoryItem>
+        <CategoryItem
+          text="See & Do"
+          showCategory={() => showCategory("seeAndDo")}
+        >
+          {showCategories.category === "seeAndDo" && (
+            <CategoryList
+              category={categories.filter(
+                (category) => category.category === showCategories.category
+              )}
+            />
+          )}
+        </CategoryItem>
+        <CategoryItem
+          text="Work & Study"
+          showCategory={() => showCategory("workAndStudy")}
+        >
+          {showCategories.category === "workAndStudy" && (
+            <CategoryList
+              category={categories.filter(
+                (category) => category.category === showCategories.category
+              )}
+            />
+          )}
+        </CategoryItem>
       </ul>
     </nav>
   );
 };
-
-// {categories.map((category, i) => {
-//   return (
-//     <span
-//       key={i}
-// data-id={category.id}
-// onClick={(e) => handleClick(e)}
-//       className="category"
-//     >
-//       {category.eventName}
-//     </span>
-//   );
-// })}

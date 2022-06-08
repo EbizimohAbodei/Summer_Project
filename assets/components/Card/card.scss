@@ -27,6 +27,7 @@
     margin-right: 25px;
     object-fit: cover;
     cursor: pointer;
+    position: relative;
   }
 
   div {
@@ -56,14 +57,28 @@
 
   .card_info div {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 19px;
+    left: 24.5px;
     height: 20px;
     width: 20px;
+    z-index: 15;
 
     path {
       fill: #a3d7f1;
     }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 2px 3px 15px 1px rgba(0, 0, 0, 0.75);
   }
 }
 

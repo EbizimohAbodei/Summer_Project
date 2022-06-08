@@ -29,19 +29,38 @@ li {
     @include hoover;
   }
 
+  @media (max-width: 928px) {
+    padding: 0 5px;
+  }
+
   .arrow {
     font-size: 1.6em;
     padding-left: 6px;
     margin-bottom: 12px;
+
+    @media (max-width: 928px) {
+      padding-left: 4px;
+    }
   }
 }
 
 .categories {
   z-index: 100;
-  width: 55%;
   height: 100%;
   display: flex;
   align-items: center;
+
+  @media (max-width: 1099px) {
+    width: 60%;
+  }
+
+  @media (max-width: 1006px) {
+    width: 65%;
+  }
+
+  @media (max-width: 826px) {
+    width: 70%;
+  }
 
   .broadCategories {
     width: 100%;
@@ -56,7 +75,8 @@ li {
     position: absolute;
     top: 64px;
     background-color: #fff;
-    width: 50%;
+    width: 20%;
+    border: 1px solid rgb(178, 178, 178);
     @include slide-down(0.5s);
     li {
       display: flex;

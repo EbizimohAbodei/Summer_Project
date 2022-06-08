@@ -1,3 +1,18 @@
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@mixin slide-in($duration) {
+  animation: slide-in $duration ease-in-out both;
+}
+
 header {
   height: 65px;
   display: flex;
@@ -8,4 +23,54 @@ header {
   background-color: white;
   padding: 0 5%;
   z-index: 10000;
+
+  .hamburgerMenu {
+    display: none;
+  }
+
+  @media screen and (max-width: 950px) {
+    .categories {
+      display: none;
+    }
+
+    .hamburgerMenu {
+      display: block;
+      font-size: 2rem;
+    }
+
+    .navPhone nav {
+      display: block;
+      position: absolute;
+      top: 4rem;
+      left: 1rem;
+      height: auto;
+      width: 15rem;
+
+      .broadCategories {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgb(178, 178, 178);
+
+        li {
+          background-color: rgb(255, 255, 255);
+          flex-direction: column;
+
+          .categoryItems {
+            @include slide-in(0.5s);
+            height: auto;
+            width: min-content;
+            position: relative;
+            top: 0;
+            border: 0;
+            border-top: 1px solid rgb(178, 178, 178);
+            margin-bottom: 1rem;
+            transition: height 0.3s ease;
+            li {
+              width: 10rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
