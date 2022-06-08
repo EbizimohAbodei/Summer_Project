@@ -29,6 +29,14 @@ body {
   }
   Header {
     background-color: rgb(106, 136, 126);
+    li {
+      background-color: rgb(106, 136, 126);
+    }
+  }
+
+  .nextButton,
+  .prevButton {
+    color: #fafafa;
   }
 }
 

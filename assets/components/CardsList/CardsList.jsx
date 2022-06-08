@@ -101,6 +101,7 @@ function CardsList() {
       {loading && <Loading />}
       <div className="cardsList">
         {allEventsData?.data?.map((item) => {
+          const likeData = likes.find((like) => like.eventId === item.id);
           return (
             <Card
               key={item.id}
@@ -127,11 +128,14 @@ function CardsList() {
               eventImage={item?.images[0]?.url}
               addInterest={() => {
                 handleLike(item.id, item.end_time, 0, 1);
-                navigate(`/events/${item.id}`);
+                navigate(`/events/${item.id}`, {
+                  state: { response: likeData },
+                });
               }}
             >
               <div>
                 <BsHeartFill onClick={() => handleLike(item.id, item.end_time, 1, 0)} />
+                <p>{likeData?.interestCount || "0"}</p>
               </div>
             </Card>
           );
