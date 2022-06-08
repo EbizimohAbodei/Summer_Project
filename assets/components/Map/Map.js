@@ -15,7 +15,7 @@ const Map = (props) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={[props.longitude, props.latitude]}>
-        <Popup>
+        <Popup closeButton={false}>
           <a href={props?.url?.en || props?.url?.fi || props?.url?.sv} target="_blank">
             <h3>{props?.name?.en || props?.name?.fi || props?.name?.sv}</h3>
           </a>
