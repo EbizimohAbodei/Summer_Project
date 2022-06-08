@@ -15,14 +15,11 @@ const Header = () => {
   const [searchToggle, setSearchToggle] = useState(false);
 
   const showCategory = (category) => {
-    if (category === "header") {
-      console.log(category);
-      setShowCategories({ show: false, category: null });
-    } else if (!showCategories.category) {
-      setShowCategories({ show: !showCategories.show, category: category });
+    if (!showCategories.category) {
+      setShowCategories({ show: true, category: category });
       return;
     } else if (category === showCategories.category) {
-      setShowCategories({ show: !showCategories.show, category: null });
+      setShowCategories({ show: true, category: null });
       return;
     }
     setShowCategories({ ...showCategories, category: category });
@@ -56,6 +53,7 @@ const Header = () => {
         onClick={() => {
           toggleNav();
           setSearchToggle(false);
+          setShowCategories({ ...showCategories, show: !showCategories.show });
         }}
       />
       <SearchBar
