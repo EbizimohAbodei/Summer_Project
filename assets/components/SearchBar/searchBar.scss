@@ -30,6 +30,7 @@ $inputbgfocus: rgb(190, 210, 210);
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-right: 90px;
 
   .formContainer {
     @include slide-in(0.5s);
@@ -47,6 +48,8 @@ $inputbgfocus: rgb(190, 210, 210);
       width: 20vw;
       height: 21px;
       margin-left: 15px;
+      z-index: 150000;
+      background-color: #fefefe;
       &:focus {
         outline: none !important;
         border: 2px solid rgb(76, 210, 210);
@@ -100,6 +103,7 @@ $inputbgfocus: rgb(190, 210, 210);
     width: 26px;
     background-color: #fefefe00;
     transform: scale(1.2);
+    z-index: 150000;
 
     &:hover {
       @include hoover;
