@@ -10,13 +10,17 @@ const Footer = () => {
         </div>
         <div>
           <h3>
-            Disclaimer: EOT does not own rights to content displayed on this
-            platform
+            All content displayed on this platform is used purely for educational purposes
+            only
           </h3>
         </div>
         <div>
           <h3>
-            &copy; 2022 Helsinki open API and Affiliates. All rights reserved.
+            &copy; 2022{" "}
+            <a href="https://open-api.myhelsinki.fi/terms" target="_blank">
+              Helsinki open API
+            </a>{" "}
+            and Affiliates
           </h3>
         </div>
       </div>
