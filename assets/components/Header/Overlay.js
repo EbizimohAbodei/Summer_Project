@@ -10,7 +10,7 @@ export const Overlay = ({ toggleCategories }) => {
         width: "100vw",
         top: "4rem",
         left: "0",
-        backgroundColor: "black",
+        backgroundColor: "transparent",
         zIndex: "9",
       }}
     ></div>
