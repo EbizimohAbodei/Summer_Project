@@ -28,7 +28,7 @@ header {
     display: none;
   }
 
-  @media screen and (max-width: 950px) {
+  @media (max-width: 950px) {
     .categories {
       display: none;
     }
