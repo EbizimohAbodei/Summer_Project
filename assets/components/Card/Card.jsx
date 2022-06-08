@@ -3,7 +3,7 @@ import "./card.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../Loading/Loading";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Card(props) {
   const [locationData, setLocationData] = useState([]);
@@ -34,7 +34,9 @@ function Card(props) {
     ? ""
     : locationData.street_address.fi + ", ";
 
-  const postal_code = !locationData.postal_code ? "" : locationData.postal_code + ", ";
+  const postal_code = !locationData.postal_code
+    ? ""
+    : locationData.postal_code + ", ";
 
   const local_address = !locationData.address_locality
     ? ""
@@ -44,7 +46,10 @@ function Card(props) {
 
   return (
     <div className="card">
-      <img src={props.eventImage || image} onClick={() => navigate(`/events/${id}`)} />
+      <img
+        src={props.eventImage || image}
+        onClick={() => navigate(`/events/${id}`)}
+      />
 
       <div className="card_info">
         <h1 onClick={props.addInterest} className="name">
@@ -53,7 +58,9 @@ function Card(props) {
         <p className="dateTime">
           {props.startDate} {props.startTime} - {props.endDate} {props.endTime}
         </p>
-        <p className="location">{street_address ? street_address : "no address"}</p>
+        <p className="location">
+          {street_address ? street_address : "no address"}
+        </p>
         <p className="description">{props.description}</p>
         {props.children}
       </div>
