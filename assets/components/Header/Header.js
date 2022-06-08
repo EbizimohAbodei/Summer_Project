@@ -12,7 +12,7 @@ const Header = () => {
     show: false,
     category: null,
   });
-  const [searchToggle, setSearchToggle] = useState(true);
+  const [searchToggle, setSearchToggle] = useState(false);
 
   const showCategory = (category) => {
     if (category === "header") {
