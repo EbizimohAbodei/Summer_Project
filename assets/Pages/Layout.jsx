@@ -11,7 +11,6 @@ export const ThemeContext = createContext(null);
 
 const Layout = () => {
   const [theme, setTheme] = useState("light");
-
   const toggleTheme = () => {
     setTheme((current) => (current === "light" ? "dark" : "light"));
   };
