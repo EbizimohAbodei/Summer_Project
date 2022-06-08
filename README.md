@@ -2,17 +2,21 @@
 
 Project made as a school study project. Technologies used are ReactJS, Symfony and MySQL.
 
-## Installing the project
+## Install and setup
 
 Make sure you have NPM, PHP and Composer installed to you machine. You know how you get them.
 
 Clone/download/fork project and navigate to project root folder.
 
-You will need to install Docker and Symfony-MAMP @ [Symfony-MAMP](https://github.com/kalwar/Symfony-MAMP) for Mac users and keep db running. If you want to monitor the database keep PhpMyAdmin also running. For the Symfony-MAMP you will need to figure it out on your own because there will be some system specific settings we cannot cover here. For windows user you will need a different Docker container.
+You will need to install Docker and [Symfony-MAMP](https://github.com/kalwar/Symfony-MAMP) for Mac users and keep db running. If you want to monitor the database keep PhpMyAdmin also running. For the Symfony-MAMP you will need to figure it out on your own because there will be some system specific settings we cannot cover here.
 
-**Main goal here is to run MySQL database at localhost:8000**
+For windows user you will need a different Docker container.
 
-Run these commands in your terminal:
+> **Main goal here is to run MySQL database at localhost:3308**
+
+Check package.json file for dependencies and install them.
+
+### Run these commands in your terminal:
 
 ```shell
 npm install
@@ -27,19 +31,17 @@ php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
 ```
 
-Check for package.json file for dependencies and install them.
-
 ## Running the project
 
 When you have all the dependencies installed, in project root folder run these commands in separeted terminals and keep them alive as long as you want to keep the project alive:
 
-Webpack Encore:
+### Webpack Encore:
 
 ```shell
 npm run watch
 ```
 
-Running the dev server
+### Running the dev server
 
 ```shell
 symfony serve -d
@@ -47,7 +49,7 @@ symfony serve -d
 
 You will need to remember to shut the server down when you are done.
 
-Killing the dev server:
+### Killing the dev server:
 
 ```shell
 symfony server:stop
