@@ -76,7 +76,7 @@ const SingleEventPage = () => {
             </small>
           </p>
           <p>
-            <small>{likeData?.interestCount} have viewed this event</small>
+            <small>{likeData?.interestCount || "0"} have viewed this event</small>
           </p>
           <p className="date">
             {new Date(event?.start_time).toLocaleDateString().replaceAll("/", ".")},{" "}
