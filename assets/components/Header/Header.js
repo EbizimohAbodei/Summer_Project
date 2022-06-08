@@ -16,11 +16,21 @@ const Header = () => {
 
   const showCategory = (category) => {
     if (!showCategories.category) {
-      setShowCategories({ show: true, category: category });
-      return;
+      if (!nav.classList.contains("navPhone")) {
+        setShowCategories({ show: !showCategories.show, category: category });
+        return;
+      } else {
+        setShowCategories({ show: true, category: category });
+        return;
+      }
     } else if (category === showCategories.category) {
-      setShowCategories({ show: true, category: null });
-      return;
+      if (!nav.classList.contains("navPhone")) {
+        setShowCategories({ show: !showCategories.show, category: null });
+        return;
+      } else {
+        setShowCategories({ show: true, category: null });
+        return;
+      }
     }
     setShowCategories({ ...showCategories, category: category });
   };

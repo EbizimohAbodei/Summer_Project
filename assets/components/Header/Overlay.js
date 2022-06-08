@@ -8,7 +8,8 @@ export const Overlay = ({ toggleCategories }) => {
         position: "fixed",
         height: "100vh",
         width: "100vw",
-        top: "0",
+        top: "4rem",
+        left: "0",
         backgroundColor: "transparent",
         zIndex: "9",
       }}
