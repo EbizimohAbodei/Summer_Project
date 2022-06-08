@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: white;
+  background-color: #fafafa;
   font-family: "Noto Sans Display", sans-serif;
 }
 
@@ -37,6 +37,38 @@ body {
   .nextButton,
   .prevButton {
     color: #fafafa;
+
+    &::before {
+      background-image: url(./arrow_light.svg);
+    }
+  }
+
+  .frame::after {
+    background: #131212;
+    background: linear-gradient(
+      0deg,
+      rgba(19, 18, 18, 1) 25%,
+      rgba(19, 18, 18, 0.4948573179271709) 35%,
+      rgba(19, 18, 18, 0.20073967086834732) 45%,
+      rgba(19, 18, 18, 0) 55%
+    );
+  }
+
+  .eventInfo {
+    background-color: #6b767c;
+  }
+
+  .imageContainer::after {
+    background-image: url("./mask_dark.svg");
+  }
+
+  p.date,
+  p.location {
+    color: #d6d6d6;
+  }
+
+  .footerContainer a {
+    color: #d6d6d6;
   }
 }
 
