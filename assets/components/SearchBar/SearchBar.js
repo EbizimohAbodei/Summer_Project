@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./searchBar.scss";
 import { RiSearch2Line } from "react-icons/Ri";
 import { GrClose } from "react-icons/Gr";
-import { BsCalendarDateFill } from "react-icons/bs";
-import { IoCalendarNumber } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -15,13 +13,13 @@ export const SearchBar = ({ showSearch, searchToggle }) => {
 
   const getCategories = (e) => {
     e.preventDefault();
+    const startEnd = endDate
+      ? `start=${startDate}&end=${endDate}`
+      : `start=${startDate}`;
     if (searchTerm) {
-      const startEnd = endDate
-        ? `&start=${startDate}&end=${endDate}`
-        : `&start=${startDate}`;
       axios
         .get(
-          `http://api.hel.fi/linkedevents/v1/search/?type=event&input=${searchTerm}${startEnd}`
+          `http://api.hel.fi/linkedevents/v1/search/?type=event&input=${searchTerm}&${startEnd}`
         )
         .then((response) => {
           navigate(`/search/${searchTerm}`, {
@@ -30,6 +28,21 @@ export const SearchBar = ({ showSearch, searchToggle }) => {
           window.location.reload();
         })
         .catch((err) => console.log(err));
+    } else {
+      axios
+        .get(
+          `http://api.hel.fi/linkedevents/v1/event/?sort=end_time&${startEnd}`
+        )
+        .then((response) => {
+          console.log("searching with dates");
+          navigate(`/search/${startEnd}`, {
+            state: { response: response.data },
+          });
+          window.location.reload();
+        })
+        .catch((err) =>
+          console.log("error occured while searching events with dates", err)
+        );
     }
   };
 
