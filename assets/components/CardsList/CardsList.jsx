@@ -16,9 +16,7 @@ function CardsList() {
 
   useEffect(() => {
     axios
-      .get(
-        "http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=35&start=today"
-      )
+      .get("http://api.hel.fi/linkedevents/v1/event/?end=2025-12-31&page=35&start=today")
       .then((response) => {
         setAllEventsData(response?.data);
         setMeta(response.data.meta);
@@ -28,9 +26,7 @@ function CardsList() {
         console.log(error);
       })
       .finally(() => {
-        axios
-          .get("http://127.0.0.1:8000/spa/getlikes")
-          .then((res) => setLikes(res.data));
+        axios.get("http://127.0.0.1:8000/spa/getlikes").then((res) => setLikes(res.data));
       });
   }, []);
 
@@ -110,9 +106,7 @@ function CardsList() {
             <Card
               key={item.id}
               id={item.id}
-              name={
-                item.name.en || item.name.fi || item.name.sv || item.name.ru
-              }
+              name={item.name.en || item.name.fi || item.name.sv || item.name.ru}
               locationCall={item?.location["@id"]}
               startDate={new Date(item?.start_time).toLocaleDateString()}
               startTime={new Date(item?.start_time).toLocaleTimeString()}
@@ -140,9 +134,7 @@ function CardsList() {
               }}
             >
               <div>
-                <BsHeartFill
-                  onClick={() => handleLike(item.id, item.end_time, 1, 0)}
-                />
+                <BsHeartFill onClick={() => handleLike(item.id, item.end_time, 1, 0)} />
                 <p>{likeData?.interestCount || "0"}</p>
               </div>
             </Card>
