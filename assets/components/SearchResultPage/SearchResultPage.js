@@ -99,8 +99,10 @@ const SearchResultPage = () => {
       postForm.append("endDate", endTime);
       axios
         .post("http://127.0.0.1:8000/spa/addlikes", postForm)
-        .then((res) => console.log("form posted", res))
-        .catch((err) => console.log("error occurred: ", err))
+        .then((res) => console.log("interestCountposted posted", res))
+        .catch((err) =>
+          console.log("error occurred when posting interestCount: ", err)
+        )
         .finally(() => {
           axios
             .get("http://127.0.0.1:8000/spa/getlikes")
@@ -191,7 +193,7 @@ const SearchResultPage = () => {
         {meta.previous && (
           <button
             className="prevButton "
-            onClick={() => handleLike(meta.previous)}
+            onClick={() => changePage(meta.previous)}
           >
             Previous
           </button>
