@@ -15,14 +15,12 @@ const SingleEventPage = () => {
   const [image, setImage] = useState();
   const [price, setPrice] = useState({ is_free: true });
   const [loading, setLoading] = useState(true);
-  console.log(likeData); //LIKE DATA HERE
 
   useEffect(() => {
     axios
       .get("https://api.hel.fi/linkedevents/v1/event/" + params.id)
       .then((res) => {
         setEvent(res.data);
-        console.log(res.data);
         res.data?.images[0]
           ? axios
               .get(res.data?.images[0]["@id"])
@@ -40,7 +38,6 @@ const SingleEventPage = () => {
           .get(res.data.location["@id"])
           .then((res) => {
             setPlace(res.data);
-            console.log(res.data);
           })
           .catch((err) =>
             console.log("An error happened while looking place information: ", err)
