@@ -15,7 +15,6 @@ const SingleEventPage = () => {
   const [image, setImage] = useState();
   const [price, setPrice] = useState({ is_free: true });
   const [loading, setLoading] = useState(true);
-  console.log(likeData); //LIKE DATA HERE
 
   useEffect(() => {
     axios
@@ -43,7 +42,10 @@ const SingleEventPage = () => {
             console.log(res.data);
           })
           .catch((err) =>
-            console.log("An error happened while looking place information: ", err)
+            console.log(
+              "An error happened while looking place information: ",
+              err
+            )
           );
         setLoading(!loading);
       })
@@ -68,26 +70,37 @@ const SingleEventPage = () => {
           <p>
             <small>
               <a
-                href={event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+                href={
+                  event?.info_url?.en ||
+                  event?.info_url?.fi ||
+                  event?.info_url?.sv
+                }
                 target="_blank"
               >
-                {event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv}
+                {event?.info_url?.en ||
+                  event?.info_url?.fi ||
+                  event?.info_url?.sv}
               </a>
             </small>
           </p>
           <p>
-            <small>{likeData?.interestCount || "0"} have viewed this event</small>
+            <small>
+              {likeData?.interestCount || "0"} have viewed this event
+            </small>
           </p>
           <p className="date">
-            {new Date(event?.start_time).toLocaleDateString().replaceAll("/", ".")},{" "}
-            {new Date(event?.start_time).toLocaleTimeString()} -{" "}
+            {new Date(event?.start_time)
+              .toLocaleDateString()
+              .replaceAll("/", ".")}
+            , {new Date(event?.start_time).toLocaleTimeString()} -{" "}
             {new Date(event?.start_time).toLocaleDateString() ===
               new Date(event?.end_time).toLocaleDateString() ||
             new Date(event?.start_time).toLocaleDateString() >
               new Date(event?.end_time).toLocaleDateString()
               ? ""
-              : new Date(event?.end_time).toLocaleDateString().replaceAll("/", ".") +
-                ", "}
+              : new Date(event?.end_time)
+                  .toLocaleDateString()
+                  .replaceAll("/", ".") + ", "}
             {new Date(event?.end_time).toLocaleTimeString()}
           </p>
 

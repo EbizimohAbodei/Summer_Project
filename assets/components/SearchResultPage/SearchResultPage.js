@@ -16,6 +16,10 @@ const SearchResultPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    getTagsAndLikes(events);
+  }, []);
+
   const getTagsAndLikes = (array) => {
     setLoading(true);
     const getTags = array.map((tag, i) => {
@@ -44,10 +48,6 @@ const SearchResultPage = () => {
           .then(() => setLoading(false))
       );
   };
-
-  useEffect(() => {
-    getTagsAndLikes(events);
-  }, []);
 
   const changePage = (fetch) => {
     setLoading(true);
@@ -79,7 +79,6 @@ const SearchResultPage = () => {
   const handleLike = (id, endTime, addLike, addInterest) => {
     const eventHasLikes = likes.filter((like) => like.eventId.includes(id));
     if (eventHasLikes.length > 0) {
-      console.log("id: ", eventHasLikes[0].id);
       axios
         .put(`http://127.0.0.1:8000/spa/updatelike/${eventHasLikes[0].id}`, {
           eventId: id,
@@ -93,10 +92,10 @@ const SearchResultPage = () => {
         );
     } else {
       let postForm = new FormData();
-      postForm.append("likeCount", addLike);
-      postForm.append("interestCount", addInterest);
       postForm.append("eventId", id);
       postForm.append("endDate", endTime);
+      postForm.append("likeCount", addLike);
+      postForm.append("interestCount", addInterest);
       axios
         .post("http://127.0.0.1:8000/spa/addlikes", postForm)
         .then((res) => console.log("interestCountposted posted", res))
@@ -209,24 +208,3 @@ const SearchResultPage = () => {
 };
 
 export default SearchResultPage;
-
-// const removeTags = (str) => {
-//   if (!str) {
-//     return "no description";
-//   } else {
-//     str.toString();
-//   }
-//   return str.replace(/(<([^>]+)>)/gi, "");
-// };
-
-// const start_time = new Date(event.start_time).toLocaleDateString();
-// const end_time = new Date(event.end_time).toLocaleDateString();
-
-// const startEndTime =
-//   start_time === end_time || start_time > end_time
-//     ? start_time
-//     : `${start_time} - ${end_time}`;
-
-// if (eventName.split(" ").length > 10) {
-//   eventName = eventName.split(" ").slice(0, 10).join(" ") + "...";
-// }

@@ -36,7 +36,7 @@ const CategoryList = ({ category }) => {
   const handleClick = (e) => {
     axios
       .get(
-        `https://api.hel.fi/linkedevents/v1/event/?keyword=${e.target.dataset.id}&start=today`
+        `https://api.hel.fi/linkedevents/v1/event/?sort=end_time&keyword=${e.target.dataset.id}&start=today`
       )
       .then((response) => {
         navigate(`/search/${e.target.textContent.replaceAll(" ", "_")}`, {

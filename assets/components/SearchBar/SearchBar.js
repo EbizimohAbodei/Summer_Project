@@ -19,7 +19,7 @@ export const SearchBar = ({ showSearch, searchToggle }) => {
     if (searchTerm) {
       axios
         .get(
-          `http://api.hel.fi/linkedevents/v1/search/?type=event&input=${searchTerm}&${startEnd}`
+          `http://api.hel.fi/linkedevents/v1/search/?type=event&input=${searchTerm}&${startEnd}&sort=end_time`
         )
         .then((response) => {
           navigate(`/search/${searchTerm}`, {
