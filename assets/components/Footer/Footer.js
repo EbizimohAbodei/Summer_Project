@@ -17,7 +17,7 @@ const Footer = () => {
         <div>
           <h3>
             &copy; 2022{" "}
-            <a href="https://open-api.myhelsinki.fi/terms" target="_blank">
+            <a href="https://api.hel.fi/linkedevents/v1/" target="_blank">
               Helsinki open API
             </a>{" "}
             and Affiliates
