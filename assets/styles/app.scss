@@ -24,6 +24,14 @@ body {
   background-color: #131212;
   color: #fafafa;
 
+  .eventContainer .card p {
+    color: #131212;
+  }
+
+  .card_info div {
+    color: #131212;
+  }
+
   .card {
     background-color: grey;
   }
@@ -96,6 +104,14 @@ body {
 .switch {
   position: fixed;
   top: 3.5px;
-  right: 3%;
+  right: 1%;
   z-index: 15000;
+
+  @media (max-width: 766px) {
+    right: 14%;
+  }
+
+  @media (max-width: 519px) {
+    right: 27%;
+  }
 }

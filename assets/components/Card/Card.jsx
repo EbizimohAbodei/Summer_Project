@@ -53,7 +53,8 @@ function Card(props) {
           {props.name}
         </h1>
         <p className="dateTime">
-          {props.startDate} {props.startTime} - {props.endDate} {props.endTime}
+          {/* {props.startDate} {props.startTime} - {props.endDate} {props.endTime} */}
+          {props.startDate}
         </p>
         <p className="location">
           {street_address ? street_address : "no address"}

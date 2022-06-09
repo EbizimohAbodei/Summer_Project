@@ -7,9 +7,24 @@
     // min-height: 25vh;
     background-color: #d2e6f0;
     margin-bottom: -2px;
+    position: relative;
 
     @media (max-width: 1023px) {
       flex-direction: column;
+    }
+  }
+
+  .views_count {
+    position: absolute;
+    right: 10%;
+    bottom: 5px;
+
+    @media (max-width: 1023px) {
+      right: 2%;
+    }
+
+    small {
+      font-style: italic;
     }
   }
 
@@ -86,7 +101,7 @@
 
 .eventData {
   width: 45%;
-  padding: 35px 5%;
+  padding: 25px 5%;
   overflow: hidden;
   position: relative;
 
@@ -145,8 +160,36 @@
     }
   }
 
-  .short_description {
+  .web {
+    position: relative;
+    display: block;
+    padding-left: 25px;
     margin-top: 1em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      background-size: 18px 18px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("./web.svg");
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .short_description {
+    margin-top: 1.2em;
+
+    @media (max-width: 519px) {
+      margin-bottom: 1.5em;
+    }
   }
 
   p {

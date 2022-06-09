@@ -21,14 +21,23 @@ header {
   position: sticky;
   top: 0;
   background-color: #fafafa;
-  padding: 0 5%;
+  padding: 0 4%;
   z-index: 10000;
+
+  h1 {
+    @media (max-width: 1023px) {
+      font-size: 1.2em;
+      text-align: center;
+      width: 60%;
+      margin-right: -10px;
+    }
+  }
 
   .hamburgerMenu {
     display: none;
   }
 
-  @media (max-width: 950px) {
+  @media (max-width: 766px) {
     .categories {
       display: none;
     }
@@ -36,13 +45,15 @@ header {
     .hamburgerMenu {
       display: block;
       font-size: 2rem;
+      position: absolute;
+      right: 5%;
     }
 
     .navPhone nav {
       display: block;
       position: absolute;
       top: 4rem;
-      left: 1rem;
+      right: 0;
       height: auto;
       width: 15rem;
 
@@ -53,6 +64,7 @@ header {
 
         li {
           background-color: #fafafa;
+          display: flex;
           flex-direction: column;
 
           .categoryItems {
