@@ -1,3 +1,4 @@
+import { height } from "@mui/system";
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "./Map.scss";
@@ -8,7 +9,7 @@ const Map = (props) => {
       center={[props.longitude, props.latitude]}
       zoom={16}
       scrollWheelZoom={false}
-      style={{ width: "90%", height: "50vh", margin: "auto" }}
+      style={{ width: "90%", height: "50vh", margin: "auto", minHeight: "300px" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
