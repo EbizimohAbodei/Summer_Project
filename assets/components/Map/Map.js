@@ -25,11 +25,11 @@ const Map = (props) => {
           </small>
           <p>
             <br />
-            {props.street_address.en ||
-              props.street_address.fi ||
-              props.street_address.sv}
+            {props?.street_address?.en ||
+              props?.street_address?.fi ||
+              props?.street_address?.sv}
             <br />
-            {props.postal_code} {props.city.en || props.city.fi || props.city.sv}
+            {props?.postal_code} {props?.city?.en || props?.city?.fi || props?.city?.sv}
           </p>
         </Popup>
       </Marker>
