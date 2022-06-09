@@ -37,7 +37,7 @@ const Map = (props) => {
   ) : (
     <div className="nomap">
       <p>No address provided.</p>
-      <p>Either the event is remote or no address is provided be the event organizer.</p>
+      <p>Either the event is remote or address is not provided by the event organizer.</p>
       <p>Please contact the event organizer for further information.</p>
     </div>
   );
