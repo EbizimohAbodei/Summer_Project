@@ -10,11 +10,10 @@ a {
 
 .eventContainer {
   width: 90%;
-  padding: 1rem;
   margin: 0 auto;
 
   .card {
-    width: 100%;
+    width: 99%;
     max-width: none;
     height: min-content;
     margin: 2rem 0;
@@ -24,11 +23,23 @@ a {
     padding: 0.5rem;
     box-shadow: 2px 3px 15px 1px rgba(0, 0, 0, 0.75);
 
+    @media (max-width: 519px) {
+      padding: 0;
+    }
+
     img {
       object-fit: cover;
       margin-right: 1rem;
       width: 33%;
       max-width: 15rem;
+
+      @media (max-width: 519px) {
+        width: 100%;
+        max-width: none;
+        margin-right: 0;
+        margin-bottom: 5px;
+      }
+
       &:hover {
         @include hoover;
       }
@@ -36,14 +47,23 @@ a {
 
     .card_info {
       width: 67%;
+
+      @media (max-width: 519px) {
+        width: 90%;
+      }
     }
 
     .tag {
       display: inline-block;
       margin: 0.5rem;
+      margin-left: 0;
       border: black 1px solid;
       border-radius: 20px;
       padding: 0.5rem 0.7rem;
+
+      @media (max-width: 519px) {
+        font-size: 10px;
+      }
     }
 
     .like {
@@ -54,8 +74,11 @@ a {
       width: 20px;
       z-index: 15;
 
-      path {
-        fill: #a3d7f1;
+      p {
+        position: absolute;
+        left: 30px;
+        top: -2px;
+        font-size: 15px;
       }
     }
   }

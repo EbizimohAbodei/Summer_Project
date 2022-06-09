@@ -64,8 +64,11 @@ export const Categories = ({ showCategory, showCategories }) => {
   const CategoryItem = ({ text, showCategory, children }) => {
     return (
       <li onClick={showCategory}>
-        {text}
-        <span className="arrow">&#8964;</span>
+        <div>
+          {" "}
+          {text}
+          <span className="arrow">&#8964;</span>
+        </div>
         {children}
       </li>
     );

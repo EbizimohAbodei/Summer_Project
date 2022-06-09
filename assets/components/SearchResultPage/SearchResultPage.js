@@ -190,10 +190,7 @@ const SearchResultPage = () => {
           >
             {<ul>{singleEventTags}</ul>}
             <div className="like">
-              <BsHeartFill
-                onClick={() => handleLike(event.id, event.end_time, 1, 0)}
-              />
-              <p>{likeData?.interestCount || "0"}</p>
+              <p className="views">{likeData?.interestCount || "0"}</p>
             </div>
           </Card>
         );

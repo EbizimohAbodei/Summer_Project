@@ -4,17 +4,23 @@
   align-items: center;
   margin-bottom: 50px;
   min-width: 45%;
-  width: 45%;
-  height: 220px;
+  width: 47.5%;
+  height: 275px;
   background-color: #fafafa;
+  overflow: hidden;
   // box-shadow: 2px 3px 15px 1px rgba(0, 0, 0, 0.75);
 
   @media (max-width: 1023px) {
     width: 100%;
   }
 
+  @media (max-width: 519px) {
+    flex-direction: column;
+    height: min-content;
+  }
+
   &:nth-of-type(2n) {
-    margin-left: 10%;
+    margin-left: 5%;
 
     @media (max-width: 1023px) {
       margin-left: 0;
@@ -23,11 +29,15 @@
 
   img {
     width: 250px;
-    height: 220px;
-    margin-right: 25px;
+    height: 275px;
+    margin-right: 20px;
     object-fit: cover;
     cursor: pointer;
     position: relative;
+
+    @media (max-width: 519px) {
+      width: 100%;
+    }
   }
 
   div {
@@ -46,8 +56,10 @@
   }
 
   .name {
-    font-size: x-large;
+    font-size: 22px;
     font-weight: bold;
+    line-height: 115%;
+    margin-bottom: 7px;
 
     &:hover {
       text-decoration: underline;
@@ -57,14 +69,14 @@
 
   .card_info div {
     position: absolute;
-    bottom: 19px;
-    left: 24.5px;
+    bottom: 20.5px;
+    left: 55px;
     height: 20px;
     width: 20px;
     z-index: 15;
 
-    path {
-      fill: #a3d7f1;
+    @media (max-width: 519px) {
+      top: 9px;
     }
   }
 
@@ -73,32 +85,41 @@
     position: absolute;
     bottom: 15px;
     left: 15px;
-    width: 35px;
-    height: 35px;
+    width: 65px;
+    height: 30px;
     background-color: white;
-    border-radius: 50%;
+    border-radius: 10px;
     z-index: 10;
     box-shadow: 2px 3px 15px 1px rgba(0, 0, 0, 0.75);
+    background-image: url(./eye.svg);
+    background-size: 42%;
+    background-repeat: no-repeat;
+    background-position: 6px 2px;
+
+    @media (max-width: 519px) {
+      top: 5px;
+    }
   }
 }
 
 .card_info {
   display: flex;
   flex-direction: column;
-  word-wrap: break-word;
-  word-break: keep-all;
+  word-break: break-word;
+  width: calc(100% - 270px);
+
+  @media (max-width: 519px) {
+    width: 100%;
+  }
 }
 
-.date {
-  font-size: small;
+.dateTime {
+  font-size: 16px;
   color: gray;
+  margin-bottom: 5px;
 }
 
 .location {
   color: gray;
-}
-
-.cardImage {
-  width: 200px;
-  height: 200px;
+  margin-bottom: 5px;
 }

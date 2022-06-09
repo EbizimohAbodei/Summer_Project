@@ -32,6 +32,10 @@ $inputbgfocus: rgb(190, 210, 210);
   align-items: center;
   padding-right: 90px;
 
+  @media (max-width: 766px) {
+    padding-right: 55px;
+  }
+
   .formContainer {
     @include slide-in(0.5s);
   }

@@ -65,23 +65,7 @@ const SingleEventPage = () => {
         </div>
         <div className="eventData">
           <h2>{event?.name?.en || event?.name?.fi || event?.name?.sv}</h2>
-          <p>
-            <small>
-              <a
-                href={
-                  event?.info_url?.en ||
-                  event?.info_url?.fi ||
-                  event?.info_url?.sv
-                }
-                target="_blank"
-              >
-                {event?.info_url?.en ||
-                  event?.info_url?.fi ||
-                  event?.info_url?.sv}
-              </a>
-            </small>
-          </p>
-          <p>
+          <p className="views_count">
             <small>
               {likeData?.interestCount || "0"} have viewed this event
             </small>
@@ -127,7 +111,15 @@ const SingleEventPage = () => {
               place?.address_locality?.fi ||
               place?.address_locality?.sv}
           </p>
-
+          <a
+            className="web"
+            href={
+              event?.info_url?.en || event?.info_url?.fi || event?.info_url?.sv
+            }
+            target="_blank"
+          >
+            Event website
+          </a>
           <div
             className="short_description"
             dangerouslySetInnerHTML={{

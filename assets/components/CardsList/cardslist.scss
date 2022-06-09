@@ -10,10 +10,9 @@
 
 .cardsList {
   display: flex;
-  width: 90%;
+  width: 92%;
   margin: auto;
   flex-wrap: wrap;
-  justify-content: space-between;
 
   @media (max-width: 1023px) {
     flex-direction: column;
