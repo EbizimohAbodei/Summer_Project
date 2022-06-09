@@ -65,7 +65,7 @@ const SearchResultPage = () => {
   const getEventsByCategory = (e) => {
     axios
       .get(
-        `https://api.hel.fi/linkedevents/v1/event/?keyword=${e.target.dataset.id}&start=today`
+        `https://api.hel.fi/linkedevents/v1/event/?keyword=${e.target.dataset.id}&start=today&sort=end_time`
       )
       .then((response) => {
         navigate(`/search/${e.target.textContent.replaceAll(" ", "_")}`, {
@@ -91,6 +91,16 @@ const SearchResultPage = () => {
           console.log("updating likes or interestCount returned error: ", err)
         );
     } else {
+      if (!id || !endTime) {
+        console.log(
+          "id: ",
+          id,
+          "or endtime: ",
+          endTime,
+          "is falsy. Could not add interestCount"
+        );
+        return;
+      }
       let postForm = new FormData();
       postForm.append("eventId", id);
       postForm.append("endDate", endTime);
